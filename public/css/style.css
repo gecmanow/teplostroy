@@ -1,0 +1,125 @@
+html, body {
+    overflow-x: hidden;
+}
+
+.menu {
+    margin-top: 40px;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 10px 0 10px 0;
+}
+.menu ul li {
+    display: inline-block;
+    margin: 0 0 0 10px;
+}
+.menu ul li a {
+    text-decoration: underline;
+}
+.menu ul li::after:not(:last-child) {
+    content: '|';
+    margin-left: 10px;
+}
+.menu ul::after {
+    content: ' ';
+    display: block;
+    clear: both;
+}
+
+.header--logo {
+    width: 100%;
+    display: inline-block;
+}
+
+.header--logo img {
+    max-width: 100%;
+}
+
+@media screen and (max-width: 1200px) {
+    .article--body table {
+        width: auto !important;
+    }
+
+    .article--body img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .article--body {
+        max-width: 595px;
+        float: right;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header--logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .header--menu {
+        text-align: center !important;
+    }
+
+    .header--menu h4 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .header--menu h4 small {
+        margin-right: 5px;
+    }
+
+    .bottom--devider {
+        display: none;
+    }
+
+    .news--devider {
+        display: flex;
+        justify-content: center;
+    }
+
+    .news--devider--img {
+        width: calc(100% - 30px)
+    }
+
+    .bottom--bg {
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+        height: 250px !important;
+        margin-bottom: -40px !important;
+    }
+
+    .faq--textarea {
+        width: 100% !important;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .article--body table {
+        font-size: 12px !important;
+    }
+}
+
+#sendmessage, #senderror {
+    border: 1px solid #e6e6e6;
+    background: #f6f6f6;
+    display: none;
+    text-align: center;
+    padding: 15px 12px 15px 65px;
+    margin: 10px 0;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+#senderror {
+    color: #f00;
+}
+#senderror span {
+    font-weight: bold;
+}
