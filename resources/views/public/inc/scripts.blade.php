@@ -1,47 +1,6 @@
-<script>
-// calculate the position of the element in relation to the left of the browser //
-function leftPosition(target) {
-var left = 0;
-if(target.offsetParent) {
-while(1) {
-left += target.offsetLeft;
-if(!target.offsetParent) {
-break;
-}
-target = target.offsetParent;
-}
-} else if(target.x) {
-left += target.x;
-}
-return left;
-}
-
-// calculate the position of the element in relation to the top of the browser window //
-function topPosition(target) {
-var top = 0;
-if(target.offsetParent) {
-while(1) {
-top += target.offsetTop;
-if(!target.offsetParent) {
-break;
-}
-target = target.offsetParent;
-}
-} else if(target.y) {
-top += target.y;
-}
-return top;
-}
-
-// preload the arrow //
-if(document.images) {
-arrow = new Image(7,80);
-arrow.src = "images/msg_arrow.gif";
-}
-</script>
 <script src="{{ asset('js/main.js') }}"></script>
 <!-- Yandex.Metrika counter -->
-<!--<script>
+<script>
     (function (d, w, c) {
         (w[c] = w[c] || []).push(function() {
             try {
@@ -65,9 +24,9 @@ arrow.src = "images/msg_arrow.gif";
         } else { f(); }
     })(document, window, "yandex_metrika_callbacks");
 </script>
-<noscript><div><img src="//mc.yandex.ru/watch/22689064" style="position:absolute; left:-9999px;" alt="" /></div></noscript>-->
+<noscript><div><img src="//mc.yandex.ru/watch/22689064" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
-<!--<script>
+<script>
     $(document).ready(function(){
 
     });
@@ -88,12 +47,12 @@ arrow.src = "images/msg_arrow.gif";
             });
 
     };
-</script>-->
+</script>
 <!-- Global Site Tag (gtag.js) - Google Analytics -->
-<!--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-105989951-1"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-105989951-1"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments)};
+    function gtag(){dataLayer.push(arguments)}
     gtag('js', new Date());
     gtag('config', 'UA-105989951-1');
 
@@ -101,4 +60,4 @@ arrow.src = "images/msg_arrow.gif";
         yaCounter22689064.reachGoal(goal)
         gtag('event','click',{'event_category': 'button','event_label': goal});
     }
-</script>-->
+</script>
