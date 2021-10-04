@@ -2,10 +2,10 @@
 <div>
     <form name='form' id='form' class='form' action="{{ route('step4send') }}" method='post'>
         {{ csrf_field() }}
-        @if ($errors->any())
+        @if ($errors->orderStep4->any())
             <div class="alert alert-danger">
                 <ul>
-                    @foreach ($errors->all() as $error)
+                    @foreach ($errors->orderStep4->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach
                 </ul>
@@ -39,7 +39,8 @@
             <tr>
                 <td>&nbsp;</td>
                 <td>
-                    <div id="g-recaptcha2" class="g-recaptcha2" data-sitekey="6Lf0_A8UAAAAAFLmY14_F_LbjF_qHKBoUq6PNcwp"></div>
+                    {!!  app('captcha')->display() !!}
+                    {!! $errors->orderStep4->first('g-recaptcha-response', '<p class="alert alert-danger">:message</p>')!!}
                     <p></p>
                     <input type='submit' class='btn btn-primary submit' value='&nbsp; Далее... &nbsp;&nbsp;'>
                 </td>

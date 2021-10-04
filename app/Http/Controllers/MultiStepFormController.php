@@ -50,19 +50,35 @@ class MultiStepFormController extends Controller
 
         $need_service_2 = $request->input('need_service_2');
         session(['need_service_2' => $need_service_2, 'step' => $step]);
-        //$data = $request->session()->all();
 
         return redirect()->route('step3');
     }
 
     public function step2service2(Request $request)
     {
-        $validated = $request->validate([
+        $rules = [
             'step2name' => 'required|max:30',
             'step2phone' => 'required',
             'step2email' => 'required',
-            'step2comment' => 'nullable'
-        ]);
+            'step2comment' => 'nullable',
+            'g-recaptcha-response' => 'required|captcha'
+        ];
+
+        $messages = [
+            'step2name.required' => 'Поле :attribute обязательно для заполнения.',
+            'step2phone.required' => 'Поле :attribute обязательно для заполнения.',
+            'step2email.required' => 'Поле :attribute обязательно для заполнения.',
+            'g-recaptcha-response.required' => 'Поле :attribute обязательно для заполнения.',
+            'g-recaptcha-response.captcha' => 'Сожалеем, Вы не прошли проверку :attribute.'
+        ];
+
+        $validated = Validator::make($request->all(), $rules, $messages, [
+            'step2name' => 'Имя',
+            'step2email' => 'Email',
+            'step2phone' => 'Телефон',
+            'step2comment' => 'Комментарий',
+            'g-recaptcha-response' => 'reCaptcha'
+        ])->validateWithBag('orderStep2');
 
         $name = $request->input('step2name');
         $email = $request->input('step2email');
@@ -303,14 +319,30 @@ class MultiStepFormController extends Controller
 
     public function step4send(Request $request)
     {
-        $validated = $request->validate([
+        $rules = [
             'company_name' => 'nullable',
             'name' => 'required',
             'post' => 'nullable',
             'phone' => 'required',
             'email' => 'required',
-            'communication_method' => 'nullable'
-        ]);
+            'communication_method' => 'nullable',
+            'g-recaptcha-response' => 'required|captcha'
+        ];
+
+        $messages = [
+            'name.required' => 'Поле :attribute обязательно для заполнения.',
+            'phone.required' => 'Поле :attribute обязательно для заполнения.',
+            'email.required' => 'Поле :attribute обязательно для заполнения.',
+            'g-recaptcha-response.required' => 'Поле :attribute обязательно для заполнения.',
+            'g-recaptcha-response.captcha' => 'Сожалеем, Вы не прошли проверку :attribute.'
+        ];
+
+        $validated = Validator::make($request->all(), $rules, $messages, [
+            'name' => 'Имя',
+            'email' => 'Email',
+            'phone' => 'Телефон',
+            'g-recaptcha-response' => 'reCaptcha'
+        ])->validateWithBag('orderStep4');
 
         $requisites      = $request->session()->get('requisites');
         $boiler_type = $request->session()->get('boiler_type');
