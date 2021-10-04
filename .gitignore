@@ -3,8 +3,6 @@
 /.idea
 /.git
 /storage/*.key
-.htaccess
-/public/.htaccess
 .env
 .env.backup
 .phpunit.result.cache
