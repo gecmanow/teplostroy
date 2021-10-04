@@ -4,16 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class MultiStepFormController extends Controller
 {
 
     public function step1send(Request $request)
     {
-        $validated = $request->validate([
-            'need_service' => 'required'
-        ]);
-
         $step = $request->session()->get('step');
 
         if ($step == 1)

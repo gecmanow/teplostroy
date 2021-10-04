@@ -23,6 +23,7 @@ header("Cache-Control: max-age=0, public");
     <meta property="og:type" content="@yield('ogtype')"/>
     <meta property="og:url" content="{{ url()->current() }}"/>
     <meta property="og:image" content="@yield('ogimage')"/>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
     <script src="{{ asset('js/vendor/jquery-1.7.2.min.js') }}"></script>
     <script src="{{ asset('js/vendor/bootstrap.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/vendor/bootstrap.css') }}"/>
