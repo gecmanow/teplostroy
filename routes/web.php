@@ -16,57 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'App\Http\Controllers\AppController@index')->name('home');
 Route::post('poll', 'App\Http\Controllers\AppController@poll')->name('poll');
 Route::post('modal', 'App\Http\Controllers\AppController@modal')->name('modal');
-/*
- * Регистрация, вход в ЛК, восстановление пароля
- */
-/*Route::group([
-    'as' => 'admin.', // имя маршрута, например admin.index
-    'prefix' => 'admin', // префикс маршрута, например admin/index
-], function () {
-    // админка
-    Route::get('/', 'App\Http\Controllers\Admin\AdminController@index')
-        ->name('admin');
-    // форма регистрации
-    Route::get('register', 'App\Http\Controllers\Admin\RegisterController@register')
-        ->name('register');
-    // создание пользователя
-    Route::post('register', 'App\Http\Controllers\Admin\RegisterController@create')
-        ->name('create');
-    // форма входа
-    Route::get('login', 'App\Http\Controllers\Admin\LoginController@login')
-        ->name('login');
-    // аутентификация
-    Route::post('login', 'App\Http\Controllers\Admin\LoginController@authenticate')
-        ->name('auth');
-    // выход
-    Route::get('logout', 'App\Http\Controllers\Admin\LoginController@logout')
-        ->name('logout');
-    // форма ввода адреса почты
-    Route::get('forgot-password', 'App\Http\Controllers\Admin\ForgotPasswordController@form')
-        ->name('forgot-form');
-    // письмо на почту
-    Route::post('forgot-password', 'App\Http\Controllers\Admin\ForgotPasswordController@mail')
-        ->name('forgot-mail');
-    // форма восстановления пароля
-    Route::get(
-        'reset-password/token/{token}/email/{email}',
-        'App\Http\Controllers\Admin\ResetPasswordController@form'
-    )->name('reset-form');
-    // восстановление пароля
-    Route::post('reset-password', 'App\Http\Controllers\Admin\ResetPasswordController@reset')
-        ->name('reset-password');
-    Route::get('services', 'App\Http\Controllers\Admin\ServiceController@index')
-        ->name('services');
-    Route::get('services/create', 'App\Http\Controllers\Admin\ServiceController@create')
-        ->name('services.create');
-    Route::post('services/store', 'App\Http\Controllers\Admin\ServiceController@store')
-        ->name('services.store');
-    Route::get('services/{service}', 'App\Http\Controllers\Admin\ServiceController@show');
-    Route::get('services/{service}/edit', 'App\Http\Controllers\Admin\ServiceController@edit');
-    Route::post('services/update/{service}', 'App\Http\Controllers\Admin\ServiceController@update')
-        ->name('services.update');
-    Route::post('services/destroy', 'App\Http\Controllers\Admin\ServiceController@destroy');
-});*/
 
 Route::get('tovary-i-uslugi', '\App\Http\Controllers\CategoryController@index')->name('categories');
 Route::get('tovary-i-uslugi/realizovannye-proekty', '\App\Http\Controllers\ServiceController@projects')->name('projects');
