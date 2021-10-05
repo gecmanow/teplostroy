@@ -44,6 +44,6 @@
 @section('content')
     <h1 class="news-header">Новости</h1>
     @foreach($articles as $article)
-        <a href="tovary-i-uslugi/{{ $article->article_url }}">{{ $article->article_name }}</a><br>
+        <a href="news/{{ $article->article_url }}">{{ $article->article_name }}</a><br>
     @endforeach
 @endsection
