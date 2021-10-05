@@ -1,2 +1,5 @@
-User-agent: *
-Disallow:
+User-Agent: *
+
+Host: https://ck-tct.ru/
+
+Sitemap: http://ck-tct.ru/sitemap.xml
