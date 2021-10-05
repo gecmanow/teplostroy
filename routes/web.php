@@ -19,7 +19,7 @@ Route::post('modal', 'App\Http\Controllers\AppController@modal')->name('modal');
 /*
  * Регистрация, вход в ЛК, восстановление пароля
  */
-Route::group([
+/*Route::group([
     'as' => 'admin.', // имя маршрута, например admin.index
     'prefix' => 'admin', // префикс маршрута, например admin/index
 ], function () {
@@ -66,7 +66,7 @@ Route::group([
     Route::post('services/update/{service}', 'App\Http\Controllers\Admin\ServiceController@update')
         ->name('services.update');
     Route::post('services/destroy', 'App\Http\Controllers\Admin\ServiceController@destroy');
-});
+});*/
 
 Route::get('tovary-i-uslugi', '\App\Http\Controllers\CategoryController@index')->name('categories');
 Route::get('tovary-i-uslugi/realizovannye-proekty', '\App\Http\Controllers\ServiceController@projects')->name('projects');

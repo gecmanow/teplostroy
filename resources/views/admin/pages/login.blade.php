@@ -4,6 +4,15 @@
     <h1>Вход в личный кабинет</h1>
     <form method="post" action="{{ route('admin.auth') }}">
         @csrf
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="form-group">
             <input type="email" class="form-control" name="email" placeholder="Адрес почты"
                    required maxlength="255" value="{{ old('email') ?? '' }}">
