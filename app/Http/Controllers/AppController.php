@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class AppController extends Controller
 {
@@ -35,15 +36,29 @@ class AppController extends Controller
 
     public function modal(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required',
-            'phone' => 'required',
-            'comment' => 'nullable'
-        ]);
+        $rules = [
+            'modalName' => 'required|max:30',
+            'modalPhone' => 'required',
+            'modalComment' => 'nullable',
+            'g-recaptcha-response' => 'required|captcha'
+        ];
 
-        $name = $request->input('name');
-        $phone = $request->input('phone');
-        $comment = $request->input('comment');
+        $messages = [
+            'modalName.required' => 'Поле :attribute обязательно для заполнения.',
+            'modalPhone.required' => 'Поле :attribute обязательно для заполнения.',
+            'g-recaptcha-response.required' => 'Поле :attribute обязательно для заполнения.',
+            'g-recaptcha-response.captcha' => 'Сожалеем, Вы не прошли проверку :attribute.'
+        ];
+
+        $validated = Validator::make($request->all(), $rules, $messages, [
+            'modalName' => 'Имя',
+            'modalPhone' => 'Телефон',
+            'g-recaptcha-response' => 'reCaptcha'
+        ])->validateWithBag('orderModalForm');
+
+        $name = $request->input('modalName');
+        $phone = $request->input('modalPhone');
+        $comment = $request->input('modalComment');
         $admin_email = env('MAIL_ADMIN_EMAIL');
 
         $data = array('name' => $name, 'phone' => $phone, 'comment' => $comment);

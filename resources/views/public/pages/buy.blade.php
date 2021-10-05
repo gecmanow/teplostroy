@@ -23,7 +23,7 @@
                 <a class='left-menu' style="text-decoration: none;" href="{{ route('vacancy') }}">Вакансии компании</a>
             </li>
             <li>
-                <p style='background-image:url(images/elem_hor_shad_191x32.png);'>&nbsp;</p>
+                <p style='background-image:url({{ asset('/images/elem_hor_shad_191x32.png') }});'>&nbsp;</p>
             </li>
             <li>
                 <a href="{{ route('order') }}" class='btn btn-danger'>Оформить заказ</a>
@@ -59,7 +59,7 @@
     <p><span style="font-size:18px;"><span style="font-family:times new roman,times,serif;">К указанной дате мы отгрузим готовую продукцию со склада и доставим ее до объекта вместе с полным комплектом документов, паспортами качества и сертификатами соответствия.</span></span></p>
     <p><strong><span style="font-size:18px;"><span style="font-family:times new roman,times,serif;">5. Получите продукцию</span></span></strong></p>
     <p><span style="font-size:18px;"><span style="font-family:times new roman,times,serif;">В назначенный день получите&nbsp;заказ&nbsp;и комплект документов&nbsp;на объекте. Проверьте количество и качество продукции.</span></span></p>
-    <p style="text-align: center;"><span style="font-size:18px;"><span style="font-family:times new roman,times,serif;"><img alt="" src="/images/img/skorlupa-ppu.jpg" style="height: 440px; width: 523px;" /></span></span></p>
+    <p style="text-align: center;"><span style="font-size:18px;"><span style="font-family:times new roman,times,serif;"><img alt="" src="{{ asset('images/img/skorlupa-ppu.jpg') }}" style="height: 440px; width: 523px;" /></span></span></p>
     <p style="text-align: center;"><span style="font-size:18px;"><span style="font-family:times new roman,times,serif;"><strong>Для постоянных клиентов и дилеров мы предоставляем скидки на нашу продукцию. Для крупных заказов мы готовы предоставить дополнительные скидки.</strong></span></span></p>
     <p style="text-align: center;"><strong><span style="font-size:18px;"><span style="font-family:times new roman,times,serif;"><span>ПРИЯТНЫХ ПОКУПОК!</span></span></span></strong></p>
     <p><br />&nbsp;</p>

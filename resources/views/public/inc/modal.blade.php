@@ -7,29 +7,21 @@
             </div>
             <form method="post" onsubmit="reachGoal('re_callback'); return true;" action="{{ route('modal') }}">
                 {{ csrf_field() }}
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Ваше имя:</label>
-                        <input type="text" class="form-control" name="name"><br/>
+                        <label for="modalName">Ваше имя:</label>
+                        <input type="text" class="form-control" name="modalName" id="modalName" value="{{ old('modalName') }}"><br/>
                     </div>
                     <div class="form-group">
-                        <label>Телефон:</label>
-                        <input type="text" class="form-control" name="phone"><br/>
+                        <label for="modalPhone">Телефон:</label>
+                        <input type="text" class="form-control" name="modalPhone" id="modalPhone" value="{{ old('modalPhone') }}"><br/>
                     </div>
                     <div class="form-group">
-                        <label>Дополнительная информация:</label>
-                        <input type="text" class="form-control" name="comment">
+                        <label for="modalComment">Дополнительная информация:</label>
+                        <input type="text" class="form-control" name="modalComment" id="modalComment" value="{{ old('modalComment') }}">
                     </div>
-                    <div id="g-recaptcha" class="g-recaptcha" data-sitekey="6Lf0_A8UAAAAAFLmY14_F_LbjF_qHKBoUq6PNcwp"></div>
+                    {!!  app('captcha')->display() !!}
+                    {!! $errors->orderModalForm->first('g-recaptcha-response', '<p class="alert alert-danger">:message</p>')!!}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>

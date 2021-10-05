@@ -13,28 +13,28 @@
         @endif
         <table>
             <tr>
-                <td>Название организации</td>
-                <td><input type='text' size=70 name='company_name' id='company_name'></td>
+                <td><label for="company_name">Название организации</label></td>
+                <td><input type='text' size=70 name='company_name' id='company_name' value="{{ old('company_name') }}"></td>
             </tr>
             <tr>
-                <td>Ф.И.О. контактного лица</td>
-                <td><input type='text' size=70 name='name' id='name'></td>
+                <td><label for="name">Ф.И.О. контактного лица</label></td>
+                <td><input type='text' size=70 name='name' id='name' value="{{ old('name') }}"></td>
             </tr>
             <tr>
-                <td>Должность контактного лица</td>
-                <td><input type='text' size=70 name='post'></td>
+                <td><label for="post">Должность контактного лица</label></td>
+                <td><input type='text' size=70 name='post' id="post" value="{{ old('post') }}"></td>
             </tr>
             <tr>
-                <td>Телефон</td>
-                <td><input type='text' size=70 name='phone' id='phone'></td>
+                <td><label for="phone">Телефон</label></td>
+                <td><input type='text' size=70 name='phone' id='phone' value="{{ old('phone') }}"></td>
             </tr>
             <tr>
-                <td>E-mail</td>
-                <td><input type='text' size=70 name='email'></td>
+                <td><label for="email">E-mail</label></td>
+                <td><input type='text' size=70 name='email' id="email" value="{{ old('email') }}"></td>
             </tr>
             <tr>
-                <td>Предпочтительный способ связи &nbsp;</td>
-                <td><input type='text' size=70 name='communication_method'></td>
+                <td><label for="communication_method">Предпочтительный способ связи &nbsp;</label></td>
+                <td><input type='text' size=70 name='communication_method' id="communication_method" value="{{ old('communication_method') }}"></td>
             </tr>
             <tr>
                 <td>&nbsp;</td>

@@ -23,7 +23,7 @@
                 <a class='left-menu' style="text-decoration: none;" href="{{ route('vacancy') }}">Вакансии компании</a>
             </li>
             <li>
-                <p style='background-image:url(images/elem_hor_shad_191x32.png);'>&nbsp;</p>
+                <p style='background-image:url({{ asset('/images/elem_hor_shad_191x32.png') }});'>&nbsp;</p>
             </li>
             <li>
                 <a href="{{ route('order') }}" class='btn btn-danger'>Оформить заказ</a>
@@ -153,13 +153,13 @@
     <hr />
     <h4 style="text-align: center;"><span style="font-size:16px;"><strong>Схема проезда г. Красноярск:</strong></span></h4>
     <h4><span style="font-size:16px;"><strong>Головной офис Компании &quot;ТеплоСтрой&quot; в г.Красноярске&nbsp;</strong></span></h4>
-    <p style="text-align: justify;"><img alt="" src="/images/img/map2013office.jpg" style="width: 830px; height: 397px;" /></p>
+    <p style="text-align: justify;"><img alt="" src="{{ asset('images/img/map2013office.jpg') }}" style="width: 830px; height: 397px;" /></p>
     <p style="text-align: justify;">&nbsp;</p>
     <h4 style="text-align: justify;"><span style="font-size:16px;"><strong>Производственный участок Компании &quot;ТеплоСтрой&quot; в г.Красноярске</strong></span></h4>
-    <p style="text-align: justify;"><img alt="" src="/images/img/map2013work.jpg" style="width: 830px; height: 360px;" /></p>
+    <p style="text-align: justify;"><img alt="" src="{{ asset('images/img/map2013work.jpg') }}" style="width: 830px; height: 360px;" /></p>
     <p style="text-align: justify;">&nbsp;</p>
-    <div style="font: 13px/normal Arial, sans-serif; margin: 2em 0px 0px; padding: 0px; border: currentColor; color: rgb(0, 0, 0); font-size-adjust: none; font-stretch: normal;">
-        <h3 style="font: bold 13px/normal Arial, sans-serif; margin: 0pt; padding: 0pt; border: currentColor; text-align: left; font-size-adjust: none; font-stretch: normal;">&nbsp;</h3>
+    <div style="font: 13px/normal Arial, sans-serif; margin: 2em 0 0; padding: 0; border: currentColor; color: rgb(0, 0, 0); font-size-adjust: none; font-stretch: normal;">
+        <h3 style="font: bold 13px/normal Arial, sans-serif; margin: 0; padding: 0; border: currentColor; text-align: left; font-size-adjust: none; font-stretch: normal;">&nbsp;</h3>
     </div>
     <p style="text-align: left;">&nbsp;</p>
 @endsection

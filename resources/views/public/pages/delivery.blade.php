@@ -23,7 +23,7 @@
                 <a class='left-menu' style="text-decoration: none;" href="{{ route('vacancy') }}">Вакансии компании</a>
             </li>
             <li>
-                <p style='background-image:url(images/elem_hor_shad_191x32.png);'>&nbsp;</p>
+                <p style='background-image:url({{ asset('/images/elem_hor_shad_191x32.png') }});'>&nbsp;</p>
             </li>
             <li>
                 <a href="{{ route('order') }}" class='btn btn-danger'>Оформить заказ</a>
@@ -55,5 +55,5 @@
     <p style="margin-left:30pt;"><span style="font-size:18px;"><span style="font-family:times new roman,times,serif;">&middot;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Комбинированные схемы доставки.</span></span></p>
     <p><span style="font-size:18px;"><span style="font-family:times new roman,times,serif;">География поставок постоянно расширяется, на сегодняшний день территория поставок охватывает большинство регионов Российской Федерации.&nbsp;</span></span></p>
     <p>&nbsp;</p>
-    <p><span style="font-size:14px;"><img alt="" src="/images/img/geo.jpg" style="width: 750px; height: 510px;" /></span></p>
+    <p><span style="font-size:14px;"><img alt="" src="{{ asset('images/img/geo.jpg') }}" style="width: 750px; height: 510px;" /></span></p>
 @endsection

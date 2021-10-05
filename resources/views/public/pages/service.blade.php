@@ -1,5 +1,9 @@
 @extends('public.layout.home')
 
+@section('title', $service->service_name)
+@section('description', $service->description)
+@section('keywords', $service->keywords)
+
 @section('left_sidebar')
     <div class='col-sm-2'>
         <ul class='nav nav-pills nav-stacked'>

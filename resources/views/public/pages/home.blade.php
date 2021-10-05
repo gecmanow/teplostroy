@@ -1,5 +1,9 @@
 @extends('public.layout.home')
 
+@section('title', 'СК Теплострой: производство теплоизоляционных изделий из пенополиуретана в Красноярске')
+@section('description', 'СК Теплострой: производство теплоизоляционных изделий из пенополиуретана: скорлупа ппу, отводы ппу, г.Красноярск, Челябинск')
+@section('keywords', 'скорлупа ппу, отводы ппу, изоляция труб, тепловая изоляция, доставка, производство ппу')
+
 @section('left_sidebar')
     <div class='col-sm-2'>
         <ul class='nav nav-pills nav-stacked'>
@@ -19,7 +23,7 @@
                 <a class='left-menu' style="text-decoration: none;" href="{{ route('vacancy') }}">Вакансии компании</a>
             </li>
             <li>
-                <p style='background-image:url(images/elem_hor_shad_191x32.png);'>&nbsp;</p>
+                <p style='background-image:url({{ asset('/images/elem_hor_shad_191x32.png') }});'>&nbsp;</p>
             </li>
             <li>
                 <a href="{{ route('order') }}" class='btn btn-danger'>Оформить заказ</a>

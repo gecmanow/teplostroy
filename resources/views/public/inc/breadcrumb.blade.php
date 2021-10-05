@@ -18,4 +18,13 @@
         <li class='active'>@yield('title')</li>
         @endif
     </ul>
+    @if ($errors->orderModalForm->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->orderModalForm->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 @endif

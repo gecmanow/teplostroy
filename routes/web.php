@@ -1,9 +1,6 @@
 <?php
 
-use App\Models\Category;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\View;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,9 +69,9 @@ Route::group([
 });
 
 Route::get('tovary-i-uslugi', '\App\Http\Controllers\CategoryController@index')->name('categories');
+Route::get('tovary-i-uslugi/realizovannye-proekty', '\App\Http\Controllers\ServiceController@projects')->name('projects');
 Route::get('tovary-i-uslugi/{category_url}', '\App\Http\Controllers\CategoryController@show');
 Route::get('tovary-i-uslugi/{category_url}/{service_url}', '\App\Http\Controllers\ServiceController@show');
-Route::get('tovary-i-uslugi/realizovannye-proekty', '\App\Http\Controllers\ServiceController@projects')->name('projects');
 Route::get('vakansii-kompanii', '\App\Http\Controllers\ServiceController@vacancy')->name('vacancy');
 Route::get('news/{article_url}', '\App\Http\Controllers\ArticleController@show');
 

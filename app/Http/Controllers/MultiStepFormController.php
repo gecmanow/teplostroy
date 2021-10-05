@@ -100,8 +100,8 @@ class MultiStepFormController extends Controller
     public function step2service3(Request $request)
     {
         $validated = $request->validate([
-            'object' => 'required',
-            'description' => 'required'
+            'object' => 'nullable',
+            'description' => 'nullable'
         ]);
 
         $step = 4;
@@ -290,8 +290,8 @@ class MultiStepFormController extends Controller
     public function step3service3(Request $request)
     {
         $validated = $request->validate([
-            'object' => 'required',
-            'location' => 'required',
+            'object' => 'nullable',
+            'location' => 'nullable',
             'description' => 'nullable'
         ]);
 

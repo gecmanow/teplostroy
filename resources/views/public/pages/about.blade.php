@@ -23,7 +23,7 @@
                 <a class='left-menu' style="text-decoration: none;" href="{{ route('vacancy') }}">Вакансии компании</a>
             </li>
             <li>
-                <p style='background-image:url(images/elem_hor_shad_191x32.png);'>&nbsp;</p>
+                <p style='background-image:url({{ asset('/images/elem_hor_shad_191x32.png') }});'>&nbsp;</p>
             </li>
             <li>
                 <a href="{{ route('order') }}" class='btn btn-danger'>Оформить заказ</a>
@@ -43,7 +43,7 @@
 
 @section('content')
     <p style="line-height: 15.6pt;"><span style="line-height: 1.6em;">&nbsp; &nbsp; &nbsp; &nbsp; <span style="font-size:14px;">&nbsp; Общество с ограниченной ответственностью Специализированная Компания &laquo;ТеплоСтрой&raquo; (ООО СК &laquo;ТСТ&raquo;) была создана в 1998 году на фоне массовой&nbsp; оптимизации проблем теплоэнергетики.</span></span></p>
-    <p><span style="font-size:14px;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Изначально деятельность ТеплоСтрой была направлена на комплексное технологическое решение проблем теплоснабжения жи<img alt="" src="/images/img/truba-vert.jpg" style="width: 199px; height: 150px; margin-left: 10px; margin-right: 10px; float: right;" />лищно-коммунального хозяйства&nbsp; и крупных промышленных и теплоэнергетических предприятий. &nbsp;ТеплоСтрой развивается как универсальный институт и представляет собой один из лучших примеров ведения высокотехнологического строительства и производства.</span></p>
+    <p><span style="font-size:14px;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Изначально деятельность ТеплоСтрой была направлена на комплексное технологическое решение проблем теплоснабжения жи<img alt="" src="{{ asset('images/img/truba-vert.jpg') }}" style="width: 199px; height: 150px; margin-left: 10px; margin-right: 10px; float: right;" />лищно-коммунального хозяйства&nbsp; и крупных промышленных и теплоэнергетических предприятий. &nbsp;ТеплоСтрой развивается как универсальный институт и представляет собой один из лучших примеров ведения высокотехнологического строительства и производства.</span></p>
     <p><span style="font-size:14px;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;В последнее время более остро встают вопросы удорожания тепловой энергии и, в целом, охраны окружающей среды, а соответственно нашей целью становится внедрение современных эффективных методов экономии и сохранения тепла.</span></p>
     <p><span style="font-size:14px;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;С момента образования Компания ТеплоСтрой вышла в лидеры теплового монтажа и динамично развивается по сей день, являясь одной из самых надежных компаний сегмента теплоэнергетики.</span></p>
     <p>&nbsp;</p>
