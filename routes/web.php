@@ -22,6 +22,7 @@ Route::get('tovary-i-uslugi/realizovannye-proekty', '\App\Http\Controllers\Servi
 Route::get('tovary-i-uslugi/{category_url}', '\App\Http\Controllers\CategoryController@show');
 Route::get('tovary-i-uslugi/{category_url}/{service_url}', '\App\Http\Controllers\ServiceController@show');
 Route::get('vakansii-kompanii', '\App\Http\Controllers\ServiceController@vacancy')->name('vacancy');
+Route::get('news', '\App\Http\Controllers\ArticleController@index')->name('news');
 Route::get('news/{article_url}', '\App\Http\Controllers\ArticleController@show');
 
 Route::get('o-kompanii', '\App\Http\Controllers\PageController@about')->name('about');

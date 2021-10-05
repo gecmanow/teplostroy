@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use Illuminate\Http\Request;
+use App\Models\Article;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\View;
 
 class ArticleController extends Controller
 {
+    public function index()
+    {
+        $articles = Article::all();
+        return view('public.pages.articles', ['articles' => $articles]);
+    }
+
     public function show(string $article_url)
     {
         $article = DB::table('articles')

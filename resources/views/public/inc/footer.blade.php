@@ -1,16 +1,17 @@
-<div class="span12 bottom--devider" style="background-image: url(images/orange_line_bg.gif);">
+<div class="span12 bottom--devider" style="background-image: url({{ asset('images/orange_line_bg.gif') }});">
     &nbsp;
 </div>
 <div class="menu text-uppercase text-center">
     <ul>
         <li><a href="{{ route('categories') }}">Товары и услуги</a></li>
+        <li><a href="{{ route('news') }}">Новости</a></li>
         <li><a href="{{ route('order') }}">Онлайн-заказ</a></li>
         <li><a href="{{ route('buy') }}">Как купить</a></li>
         <li><a href="{{ route('reports') }}">Отзывы</a></li>
         <li><a href="{{ route('contacts') }}">Контакты</a></li>
     </ul>
 </div>
-<div class="row bottom--bg" style="background-image:url({{ asset('images/footer-bg-1180x182.png') }}); height:182px; color:white; margin:0px -11px -20px -11px;">
+<div class="row bottom--bg" style="background-image:url({{ asset('images/footer-bg-1180x182.png') }}); height:182px; color:white; margin:0 -11px -20px -11px;">
     <div class="col-sm-4" style="padding:10px 0 0 20px;">
         <small>
             <b>{{ $app->legal_form }}<br/>
@@ -37,7 +38,7 @@
                     screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
                 ";"+Math.random()+
                 "' alt='' title='LiveInternet' "+
-                "border='0' width='31' height='31'><\/a>")
+                "width='31' height='31'><\/a>")
         </script><!--/LiveInternet-->
     </div>
 </div>
