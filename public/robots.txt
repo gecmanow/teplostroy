@@ -1,5 +1,0 @@
-User-Agent: *
-
-Host: https://ck-tct.ru/
-
-Sitemap: http://ck-tct.ru/sitemap.xml
