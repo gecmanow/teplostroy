@@ -11,7 +11,7 @@ class AppController extends Controller
 {
     public function index()
     {
-        $articles = Article::all();
+        $articles = Article::all()->take(5);
         return view('public.pages.home', ['articles' => $articles]);
     }
 
