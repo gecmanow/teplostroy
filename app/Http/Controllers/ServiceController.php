@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\Models\Service;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ServiceController extends Controller
@@ -29,12 +27,27 @@ class ServiceController extends Controller
             }
         }
 
+        $services = Category::with('services')->get();
+
+        foreach ($services as $sKey => $sValue) {
+
+            if ($sValue->category_url == $category_url) {
+                foreach ($sValue->services as $key => $value) {
+                    $bottom[$key] = [
+                        'service_name' => $value->service_name,
+                        'service_url' =>$value->service_url
+                    ];
+                }
+            }
+        }
+
         $service = DB::table('services')
             ->where('service_url', '=', $service_url)
             ->leftJoin('categories', 'categories.id', '=', 'services.category_id')
             ->where('category_url', '=', $category_url)
             ->first();
-        return view('public.pages.service', ['service' => $service, 'categories' => $data]);
+
+        return view('public.pages.service', ['service' => $service, 'categories' => $data, 'bottom' => $bottom]);
     }
 
     public function projects()

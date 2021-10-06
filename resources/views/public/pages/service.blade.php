@@ -57,4 +57,7 @@
 @section('content')
     <h1 class="news-header">{{ $service->service_name }}</h1>
     {!! $service->content !!}
+    <div>
+        @include('public.inc.bottom')
+    </div>
 @endsection
