@@ -19,7 +19,7 @@ header("Cache-Control: max-age=0, public");
     <meta name="keywords" content="@yield('keywords')"/>
     <meta property="og:title" content="@yield('title') | СК Теплострой"/>
     <meta property="og:description" content="@yield('description')"/>
-    <meta property="og:site_name" content=""/>
+    <meta property="og:site_name" content="СК Теплострой"/>
     <meta property="og:type" content="@yield('ogtype')"/>
     <meta property="og:url" content="{{ url()->current() }}"/>
     <meta property="og:image" content="@yield('ogimage')"/>
