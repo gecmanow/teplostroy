@@ -17,7 +17,7 @@ header("Cache-Control: max-age=0, public");
     <title>@yield('title')</title>
     <meta name="description" content="@yield('description')"/>
     <meta name="keywords" content="@yield('keywords')"/>
-    <meta property="og:title" content="@yield('title')"/>
+    <meta property="og:title" content="@yield('title') | СК Теплострой"/>
     <meta property="og:description" content="@yield('description')"/>
     <meta property="og:site_name" content=""/>
     <meta property="og:type" content="@yield('ogtype')"/>

@@ -1,4 +1,8 @@
-@extends('public.layout.home', ['title' => 'Товары и услуги'])
+@extends('public.layout.home')
+
+@section('title', 'Товары и услуги')
+@section('description', 'Товары и услуги СК Теплострой Красноярск')
+@section('keywords', 'товары теплострой, услуги теплострой')
 
 @section('left_sidebar')
     <div class='col-sm-2'>
