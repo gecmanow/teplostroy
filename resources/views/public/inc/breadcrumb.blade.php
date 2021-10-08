@@ -6,7 +6,7 @@
         </li>
         @if(isset($service))
         <li>
-            <a href='{{ $service->category_url }}'>{{ $service->category_name }}</a>
+            <a href='/tovary-i-uslugi/{{ $service->category_url }}'>{{ $service->category_name }}</a>
             <span class='divider'></span>
         </li>
         @else
