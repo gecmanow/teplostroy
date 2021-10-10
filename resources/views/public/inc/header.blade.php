@@ -26,7 +26,7 @@
     <a href="{{ route('contacts') }}" class="btn" role="button" style="text-decoration: underline;">Контакты</a>
 </div>
 <div class="row-fluid">
-    <div class="span12" style="background-image: url(/public/images/orange_line_bg.gif);">
+    <div class="span12" style="background-image: url({{ asset('images/orange_line_bg.gif') }});">
         &nbsp;
     </div>
 </div>
