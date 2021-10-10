@@ -13,7 +13,7 @@
             <li>
             @foreach($categories as $category)
                 <li style='border-top:1px solid #ddd;'>
-                    <a class='left-menu' style='text-decoration: none;' href="tovary-i-uslugi/{{ $category->category_url }}">{{ $category->category_name }}</a>
+                    <a class='left-menu' style='text-decoration: none;' href="/tovary-i-uslugi/{{ $category->category_url }}">{{ $category->category_name }}</a>
                 </li>
             @endforeach
             <li style="border-top:1px solid #ddd;">
