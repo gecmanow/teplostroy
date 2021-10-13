@@ -123,3 +123,12 @@ html, body {
 #senderror span {
     font-weight: bold;
 }
+.service-first-img {
+    width: 250px;
+    float: left;
+    margin: 30px 30px 10px 0;
+}
+.service-bottom-img {
+    height: 250px;
+    margin: 10px 20px 0 0;
+}
