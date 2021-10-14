@@ -60,42 +60,34 @@ html, body {
         justify-content: center;
         align-items: center;
     }
-
     .header--menu {
         text-align: center !important;
     }
-
     .header--menu h4 {
         display: flex;
         align-items: center;
         justify-content: center;
         flex-wrap: wrap;
     }
-
     .header--menu h4 small {
         margin-right: 5px;
     }
-
     .bottom--devider {
         display: none;
     }
-
     .news--devider {
         display: flex;
         justify-content: center;
     }
-
     .news--devider--img {
         width: calc(100% - 30px)
     }
-
     .bottom--bg {
         background-repeat: no-repeat !important;
         background-size: cover !important;
         height: 250px !important;
         margin-bottom: -40px !important;
     }
-
     .faq--textarea {
         width: 100% !important;
     }
