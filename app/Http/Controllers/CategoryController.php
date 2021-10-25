@@ -16,7 +16,7 @@ class CategoryController extends Controller
     public function show(string $category_url)
     {
         $title = DB::table('categories')
-            ->select('category_name')
+            ->select('category_name', 'description')
             ->where('category_url', $category_url)
             ->get();
         foreach ($title as $t) {

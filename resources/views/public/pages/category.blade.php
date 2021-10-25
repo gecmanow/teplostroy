@@ -1,5 +1,6 @@
 @extends('public.layout.home')
 @section('title', $title->category_name)
+@section('description', $title->description)
 
 @section('left_sidebar')
     <div class='col-sm-2'>

@@ -1,7 +1,7 @@
 @extends('public.layout.home')
 
 @section('title', 'Как купить')
-@section('description', '')
+@section('description', 'Для приобретения товаров и услуг СК Теплострой оставьте заявку на сайте или свяжитесь с нами по указанным телефонам.')
 @section('keywords', 'скорлупа ппу, купить скорлупу ппу, купить крошку ппу, заказать скорлупу ппу')
 
 @section('left_sidebar')
