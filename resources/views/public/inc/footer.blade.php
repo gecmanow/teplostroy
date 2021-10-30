@@ -40,5 +40,10 @@
                 "' alt='' title='LiveInternet' "+
                 "width='31' height='31'><\/a>")
         </script><!--/LiveInternet-->
+        <!-- Yandex.Metrika informer -->
+        <a href="https://metrika.yandex.ru/stat/?id=22689064&amp;from=informer"
+           target="_blank" rel="nofollow" style="margin-left: 5px;"><img src="https://informer.yandex.ru/informer/22689064/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"
+                                               style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" class="ym-advanced-informer" data-cid="22689064" data-lang="ru" /></a>
+        <!-- /Yandex.Metrika informer -->
     </div>
 </div>
