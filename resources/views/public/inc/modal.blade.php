@@ -10,11 +10,11 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="modalName">Ваше имя:</label>
-                        <input type="text" class="form-control" name="modalName" id="modalName" value="{{ old('modalName') }}"><br/>
+                        <input type="text" class="form-control" name="modalName" id="modalName" value="{{ old('modalName') }}" required><br/>
                     </div>
                     <div class="form-group">
                         <label for="modalPhone">Телефон:</label>
-                        <input type="text" class="form-control" name="modalPhone" id="modalPhone" value="{{ old('modalPhone') }}"><br/>
+                        <input type="text" class="form-control" name="modalPhone" id="modalPhone" value="{{ old('modalPhone') }}" required><br/>
                     </div>
                     <div class="form-group">
                         <label for="modalComment">Дополнительная информация:</label>
