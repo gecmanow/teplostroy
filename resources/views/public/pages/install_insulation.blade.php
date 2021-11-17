@@ -84,8 +84,8 @@
                             </ul>
                         </div>
                     @endif
-                    <input class='input-xlarge offer_form-input' type='text' name='orderInstallInsulationName' id='orderInstallInsulationName' value="{{ old('orderInstallInsulationName') }}" placeholder="Имя">
-                    <input class='input-xlarge offer_form-input' type='text' name='orderInstallInsulationPhone' id='orderInstallInsulationPhone' value="{{ old('orderInstallInsulationPhone') }}" placeholder="Номер телефона">
+                    <input class='input-xlarge offer_form-input' type='text' name='orderInstallInsulationName' id='orderInstallInsulationName' value="{{ old('orderInstallInsulationName') }}" placeholder="Имя" required>
+                    <input class='input-xlarge offer_form-input' type='text' name='orderInstallInsulationPhone' id='orderInstallInsulationPhone' value="{{ old('orderInstallInsulationPhone') }}" placeholder="Номер телефона" required>
                     <input type='submit' class='btn btn-primary offer_form-btn' value='Получить персональное предложение'>
                 </form>
             </div>

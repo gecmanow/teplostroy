@@ -18,7 +18,7 @@
             </tr>
             <tr>
                 <td><label for="name">Ф.И.О. контактного лица</label></td>
-                <td><input type='text' size=70 name='name' id='name' value="{{ old('name') }}"></td>
+                <td><input type='text' size=70 name='name' id='name' value="{{ old('name') }}" required></td>
             </tr>
             <tr>
                 <td><label for="post">Должность контактного лица</label></td>
@@ -26,11 +26,11 @@
             </tr>
             <tr>
                 <td><label for="phone">Телефон</label></td>
-                <td><input type='text' size=70 name='phone' id='phone' value="{{ old('phone') }}"></td>
+                <td><input type='text' size=70 name='phone' id='phone' value="{{ old('phone') }}" required></td>
             </tr>
             <tr>
                 <td><label for="email">E-mail</label></td>
-                <td><input type='text' size=70 name='email' id="email" value="{{ old('email') }}"></td>
+                <td><input type='text' size=70 name='email' id="email" value="{{ old('email') }}" required></td>
             </tr>
             <tr>
                 <td><label for="communication_method">Предпочтительный способ связи &nbsp;</label></td>

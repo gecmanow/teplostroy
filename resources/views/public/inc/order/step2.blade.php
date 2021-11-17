@@ -35,11 +35,11 @@
         </div>
     @endif
     <label for='prod_param_1'>Ваше имя: </label><br>
-    <input class='input-xlarge' type='text' name='step2name' id='step2name' value="{{ old('step2name') }}"><br>
+    <input class='input-xlarge' type='text' name='step2name' id='step2name' value="{{ old('step2name') }}" required><br>
     <label for='prod_param_2'>Контактный телефон с кодом города: </label><br>
-    <input class='input-xlarge' type='text' name='step2phone' id='step2phone' value="{{ old('step2phone') }}"><br>
+    <input class='input-xlarge' type='text' name='step2phone' id='step2phone' value="{{ old('step2phone') }}" required><br>
     <label for='prod_param_3'>E-mail: </label><br>
-    <input class='input-xlarge' type='text' name='step2email' id='step2email' value="{{ old('step2email') }}"><br>
+    <input class='input-xlarge' type='text' name='step2email' id='step2email' value="{{ old('step2email') }}" required><br>
     <label for='prod_param_4'>Информация по заказу: </label><br>
     <textarea class='input-xxlarge' name='step2comment' rows='5' id='step2comment'></textarea><br>
     <p>При заказе скорлупы ППУ не забудьте указывать толщину изоляции и потребность в крепежных материалах, клее.</p>
