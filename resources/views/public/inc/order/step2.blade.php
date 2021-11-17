@@ -42,8 +42,6 @@
     <input class='input-xlarge' type='text' name='step2email' id='step2email' value="{{ old('step2email') }}"><br>
     <label for='prod_param_4'>Информация по заказу: </label><br>
     <textarea class='input-xxlarge' name='step2comment' rows='5' id='step2comment'></textarea><br>
-    {!!  app('captcha')->display() !!}
-    {!! $errors->orderStep2->first('g-recaptcha-response', '<p class="alert alert-danger">:message</p>')!!}
     <p>При заказе скорлупы ППУ не забудьте указывать толщину изоляции и потребность в крепежных материалах, клее.</p>
     <p></p>
     <input type='submit' class='btn btn-primary' onclick="reachGoal('online_zayavka');return true;" value='&nbsp; Отправить &nbsp;&nbsp;'>

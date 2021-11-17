@@ -60,24 +60,20 @@ class MultiStepFormController extends Controller
             'step2name' => 'required|max:30',
             'step2phone' => 'required',
             'step2email' => 'required',
-            'step2comment' => 'nullable',
-            'g-recaptcha-response' => 'required|captcha'
+            'step2comment' => 'nullable'
         ];
 
         $messages = [
             'step2name.required' => 'Поле :attribute обязательно для заполнения.',
             'step2phone.required' => 'Поле :attribute обязательно для заполнения.',
-            'step2email.required' => 'Поле :attribute обязательно для заполнения.',
-            'g-recaptcha-response.required' => 'Поле :attribute обязательно для заполнения.',
-            'g-recaptcha-response.captcha' => 'Сожалеем, Вы не прошли проверку :attribute.'
+            'step2email.required' => 'Поле :attribute обязательно для заполнения.'
         ];
 
         $validated = Validator::make($request->all(), $rules, $messages, [
             'step2name' => 'Имя',
             'step2email' => 'Email',
             'step2phone' => 'Телефон',
-            'step2comment' => 'Комментарий',
-            'g-recaptcha-response' => 'reCaptcha'
+            'step2comment' => 'Комментарий'
         ])->validateWithBag('orderStep2');
 
         $name = $request->input('step2name');
@@ -325,23 +321,19 @@ class MultiStepFormController extends Controller
             'post' => 'nullable',
             'phone' => 'required',
             'email' => 'required',
-            'communication_method' => 'nullable',
-            'g-recaptcha-response' => 'required|captcha'
+            'communication_method' => 'nullable'
         ];
 
         $messages = [
             'name.required' => 'Поле :attribute обязательно для заполнения.',
             'phone.required' => 'Поле :attribute обязательно для заполнения.',
-            'email.required' => 'Поле :attribute обязательно для заполнения.',
-            'g-recaptcha-response.required' => 'Поле :attribute обязательно для заполнения.',
-            'g-recaptcha-response.captcha' => 'Сожалеем, Вы не прошли проверку :attribute.'
+            'email.required' => 'Поле :attribute обязательно для заполнения.'
         ];
 
         $validated = Validator::make($request->all(), $rules, $messages, [
             'name' => 'Имя',
             'email' => 'Email',
-            'phone' => 'Телефон',
-            'g-recaptcha-response' => 'reCaptcha'
+            'phone' => 'Телефон'
         ])->validateWithBag('orderStep4');
 
         $requisites      = $request->session()->get('requisites');

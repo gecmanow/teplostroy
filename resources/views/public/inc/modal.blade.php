@@ -20,8 +20,6 @@
                         <label for="modalComment">Дополнительная информация:</label>
                         <input type="text" class="form-control" name="modalComment" id="modalComment" value="{{ old('modalComment') }}">
                     </div>
-                    {!!  app('captcha')->display() !!}
-                    {!! $errors->orderModalForm->first('g-recaptcha-response', '<p class="alert alert-danger">:message</p>')!!}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>

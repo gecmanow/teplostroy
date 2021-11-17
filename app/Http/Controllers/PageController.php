@@ -14,7 +14,6 @@ class PageController extends Controller
     {
         $categories = Category::all();
         View::share('categories', $categories);
-
     }
 
     public function about()
@@ -48,23 +47,19 @@ class PageController extends Controller
             'orderOneStepEmail' => 'required',
             'orderOneStepPhone' => 'required',
             'orderOneStepComment' => 'nullable',
-            'g-recaptcha-response' => 'required|captcha'
         ];
 
         $messages = [
             'orderOneStepName.required' => 'Поле :attribute обязательно для заполнения.',
             'orderOneStepEmail.required' => 'Поле :attribute обязательно для заполнения.',
-            'orderOneStepPhone.required' => 'Поле :attribute обязательно для заполнения.',
-            'g-recaptcha-response.required' => 'Поле :attribute обязательно для заполнения.',
-            'g-recaptcha-response.captcha' => 'Сожалеем, Вы не прошли проверку :attribute.'
+            'orderOneStepPhone.required' => 'Поле :attribute обязательно для заполнения.'
         ];
 
         $validated = Validator::make($request->all(), $rules, $messages, [
             'orderOneStepName' => 'Имя',
             'orderOneStepEmail' => 'Email',
             'orderOneStepPhone' => 'Телефон',
-            'orderOneStepComment' => 'Комментарий',
-            'g-recaptcha-response' => 'reCaptcha'
+            'orderOneStepComment' => 'Комментарий'
         ])->validateWithBag('orderOneStepForm');
 
         $name = $request->input('orderOneStepName');
@@ -74,6 +69,38 @@ class PageController extends Controller
         $admin_email = env('MAIL_ADMIN_EMAIL');
 
         $data = array('name' => $name, 'email' => $email, 'phone' => $phone, 'comment' => $comment);
+        Mail::send('public.email.order', $data, function($message) use ($name, $admin_email) {
+            $message->to($admin_email, $name)->subject('Заявка с сайта');
+            $message->from(env('MAIL_ADMIN_EMAIL'), 'СК Теплострой');
+        });
+
+        $request->session()->flush();
+
+        return redirect()->route('thanks');
+    }
+
+    public function offerForm(Request $request)
+    {
+        $rules = [
+            'orderInstallInsulationName' => 'required|max:30',
+            'orderInstallInsulationPhone' => 'required'
+        ];
+
+        $messages = [
+            'orderInstallInsulationName.required' => 'Поле :attribute обязательно для заполнения.',
+            'orderInstallInsulationPhone.required' => 'Поле :attribute обязательно для заполнения.'
+        ];
+
+        $validated = Validator::make($request->all(), $rules, $messages, [
+            'orderInstallInsulationName' => 'Имя',
+            'orderInstallInsulationPhone' => 'Телефон'
+        ])->validateWithBag('orderInstallInsulationForm');
+
+        $name = $request->input('orderInstallInsulationName');
+        $phone = $request->input('orderInstallInsulationPhone');
+        $admin_email = env('MAIL_ADMIN_EMAIL');
+
+        $data = array('name' => $name, 'phone' => $phone);
         Mail::send('public.email.order', $data, function($message) use ($name, $admin_email) {
             $message->to($admin_email, $name)->subject('Заявка с сайта');
             $message->from(env('MAIL_ADMIN_EMAIL'), 'СК Теплострой');

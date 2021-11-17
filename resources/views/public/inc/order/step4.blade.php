@@ -39,8 +39,6 @@
             <tr>
                 <td>&nbsp;</td>
                 <td>
-                    {!!  app('captcha')->display() !!}
-                    {!! $errors->orderStep4->first('g-recaptcha-response', '<p class="alert alert-danger">:message</p>')!!}
                     <p></p>
                     <input type='submit' class='btn btn-primary submit' value='&nbsp; Далее... &nbsp;&nbsp;'>
                 </td>

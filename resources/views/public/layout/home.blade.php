@@ -52,7 +52,7 @@ header("Cache-Control: max-age=0, public");
 <div class="container well" style="background-color:white; padding-left:10px; padding-right:10px;">
     @include('public.inc.header')
     <main>
-        <div class="row">
+        <div class="row main-row">
             @yield('left_sidebar')
             <div class="{{ url()->current() == url('/') ? 'col-sm-8' : 'col-sm-10' }}">
                 @include('public.inc.breadcrumb')
@@ -64,7 +64,12 @@ header("Cache-Control: max-age=0, public");
         </div>
     </main>
     @include('public.inc.footer')
+    <a class="sticky-btn-link" href="tel:+79135396539">
+        <span>Связаться с нами</span>
+    </a>
 </div>
 @include('public.inc.scripts')
+<link rel="stylesheet" href="https://cdn.envybox.io/widget/cbk.css">
+<script type="text/javascript" src="https://cdn.envybox.io/widget/cbk.js?wcb_code=d879a45c4408933937baf5a10afe2bc6" charset="UTF-8" async></script>
 </body>
 </html>

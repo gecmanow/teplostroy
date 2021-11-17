@@ -11,7 +11,7 @@
     @endif
     <div class='radio'>
         <label>
-            <input type='radio' name='poll' value='Строительной организации'>
+            <input type='radio' name='poll' value='Строительной организации' checked>
             Строительной организации
         </label>
     </div>

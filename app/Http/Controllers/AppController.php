@@ -39,21 +39,17 @@ class AppController extends Controller
         $rules = [
             'modalName' => 'required|max:30',
             'modalPhone' => 'required',
-            'modalComment' => 'nullable',
-            'g-recaptcha-response' => 'required|captcha'
+            'modalComment' => 'nullable'
         ];
 
         $messages = [
             'modalName.required' => 'Поле :attribute обязательно для заполнения.',
-            'modalPhone.required' => 'Поле :attribute обязательно для заполнения.',
-            'g-recaptcha-response.required' => 'Поле :attribute обязательно для заполнения.',
-            'g-recaptcha-response.captcha' => 'Сожалеем, Вы не прошли проверку :attribute.'
+            'modalPhone.required' => 'Поле :attribute обязательно для заполнения.'
         ];
 
         $validated = Validator::make($request->all(), $rules, $messages, [
             'modalName' => 'Имя',
-            'modalPhone' => 'Телефон',
-            'g-recaptcha-response' => 'reCaptcha'
+            'modalPhone' => 'Телефон'
         ])->validateWithBag('orderModalForm');
 
         $name = $request->input('modalName');
