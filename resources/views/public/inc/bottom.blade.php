@@ -1,5 +1,5 @@
 <p>
-    <a class='btn btn-warning' href="{{ route('order') }}">Оформить заказ</a>
+    <a class='btn btn-warning' href="{{ route('order') }}">Консультация инженера</a>
 </p>
 <hr>
 <h6>Дополнительные ссылки по теме: </h6>
