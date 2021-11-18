@@ -59,33 +59,34 @@
     <div class="container-fluid offer-block">
         <div class="row">
             <div class="col-md-8 offer">
-                <h2 class="offer_heading">Профессиональный монтаж теплоизоляции на выгодных условиях</h2>
-                <p class="offer_text">Качественный монтаж изоляции любых трубопроводов, резервуаров и оборудования любыми теплоизоляционными материалами.</p>
+                <h2 class="offer_heading">Профессиональный ремонт котельных и их модернизация - качественно и точно в срок</h2>
+                <p class="offer_text">Квалифицированные инженеры с опытом от 5 лет быстро и качественно проведут работы любого уровня сложности</p>
                 <ul class="offer_list">
-                    <li class="offer_list-item">выезд специалиста на место монтажа</li>
-                    <li class="offer_list-item">подробный инструктаж по проведению монтажных работ и контроля их качества</li>
-                    <li class="offer_list-item">составление графиков поставки изоляции и выполнения работ</li>
-                    <li class="offer_list-item">консультации в ходе проведения работ</li>
-                    <li class="offer_list-item">осуществление общетехнического и технологического контроля за ходом работ</li>
-                    <li class="offer_list-item">контроль качества при выполнении работ</li>
+                    <li class="offer_list-item">перестройка и перепланировка помещений котельной</li>
+                    <li class="offer_list-item">увлечение производительности котельной</li>
+                    <li class="offer_list-item">перевод паровых котлов на водогрейный режим</li>
+                    <li class="offer_list-item">монтаж котлов и вспомогательного оборудования</li>
+                    <li class="offer_list-item">антикоррозийная защита поверхностей</li>
+                    <li class="offer_list-item">замена топочных и конвективных труб паровых котлов</li>
+                    <li class="offer_list-item">обмуровка и футеровка промышленных печей</li>
                 </ul>
             </div>
             <div class="col-md-4">
                 <h3 class="offer_subheading">Оставьте заявку сейчас и получите персональное предложение</h3>
                 <div id="timer"></div>
-                <form name="orderInstallInsulationForm" id="orderInstallInsulationForm" class="form validateform offer_form" method="post" action="{{ route('insulationForm') }}">
+                <form name="orderBoilerRepairForm" id="orderBoilerRepairForm" class="form validateform offer_form" method="post" action="{{ route('boilerForm') }}">
                     {{ csrf_field() }}
-                    @if ($errors->orderInstallInsulationForm->any())
+                    @if ($errors->orderBoilerRepairForm->any())
                         <div class="alert alert-danger">
                             <ul>
-                                @foreach ($errors->orderInstallInsulationForm->all() as $error)
+                                @foreach ($errors->orderBoilerRepairForm->all() as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach
                             </ul>
                         </div>
                     @endif
-                    <input class='input-xlarge offer_form-input' type='text' name='orderInstallInsulationName' id='orderInstallInsulationName' value="{{ old('orderInstallInsulationName') }}" placeholder="Имя" required>
-                    <input class='input-xlarge offer_form-input' type='text' name='orderInstallInsulationPhone' id='orderInstallInsulationPhone' value="{{ old('orderInstallInsulationPhone') }}" placeholder="Номер телефона" required>
+                    <input class='input-xlarge offer_form-input' type='text' name='orderBoilerRepairName' id='orderBoilerRepairName' value="{{ old('orderBoilerRepairName') }}" placeholder="Имя" required>
+                    <input class='input-xlarge offer_form-input' type='text' name='orderBoilerRepairPhone' id='orderBoilerRepairPhone' value="{{ old('orderBoilerRepairPhone') }}" placeholder="Номер телефона" required>
                     <input type='submit' class='btn btn-primary offer_form-btn' value='Получить персональное предложение'>
                 </form>
             </div>

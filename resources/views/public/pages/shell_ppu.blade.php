@@ -59,34 +59,35 @@
     <div class="container-fluid offer-block">
         <div class="row">
             <div class="col-md-8 offer">
-                <h2 class="offer_heading">Профессиональный монтаж теплоизоляции на выгодных условиях</h2>
-                <p class="offer_text">Качественный монтаж изоляции любых трубопроводов, резервуаров и оборудования любыми теплоизоляционными материалами.</p>
+                <h2 class="offer_heading">Скорлупа и отводы ППУ от производителя с экономией до 40%</h2>
+                <p class="offer_text">Низкая теплопроводность (не более 0,026 ВТ/м) позволит уменьшить толщину изоляции до 30-40мм и сэкономить на материалах</p>
                 <ul class="offer_list">
-                    <li class="offer_list-item">выезд специалиста на место монтажа</li>
-                    <li class="offer_list-item">подробный инструктаж по проведению монтажных работ и контроля их качества</li>
-                    <li class="offer_list-item">составление графиков поставки изоляции и выполнения работ</li>
-                    <li class="offer_list-item">консультации в ходе проведения работ</li>
-                    <li class="offer_list-item">осуществление общетехнического и технологического контроля за ходом работ</li>
-                    <li class="offer_list-item">контроль качества при выполнении работ</li>
+                    <li class="offer_list-item">доступные конкурентные цены</li>
+                    <li class="offer_list-item">широкий ассортимент продукции</li>
+                    <li class="offer_list-item">оперативная помощь квалифицированных консультантов</li>
+                    <li class="offer_list-item">экономия трудозатрат при монтаже до 70%</li>
+                    <li class="offer_list-item">надежность теплоизоляции до 25 лет</li>
+                    <li class="offer_list-item">полный набор комплектующих</li>
+                    <li class="offer_list-item">доставка по всей России</li>
                 </ul>
             </div>
             <div class="col-md-4">
-                <h3 class="offer_subheading">Оставьте заявку сейчас и получите персональное предложение</h3>
+                <h3 class="offer_subheading">Оставьте заявку сейчас и получите расчёт стоимости</h3>
                 <div id="timer"></div>
-                <form name="orderInstallInsulationForm" id="orderInstallInsulationForm" class="form validateform offer_form" method="post" action="{{ route('insulationForm') }}">
+                <form name="orderShellPpuForm" id="orderShellPpuForm" class="form validateform offer_form" method="post" action="{{ route('shellForm') }}">
                     {{ csrf_field() }}
-                    @if ($errors->orderInstallInsulationForm->any())
+                    @if ($errors->orderShellPpuForm->any())
                         <div class="alert alert-danger">
                             <ul>
-                                @foreach ($errors->orderInstallInsulationForm->all() as $error)
+                                @foreach ($errors->orderShellPpuForm->all() as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach
                             </ul>
                         </div>
                     @endif
-                    <input class='input-xlarge offer_form-input' type='text' name='orderInstallInsulationName' id='orderInstallInsulationName' value="{{ old('orderInstallInsulationName') }}" placeholder="Имя" required>
-                    <input class='input-xlarge offer_form-input' type='text' name='orderInstallInsulationPhone' id='orderInstallInsulationPhone' value="{{ old('orderInstallInsulationPhone') }}" placeholder="Номер телефона" required>
-                    <input type='submit' class='btn btn-primary offer_form-btn' value='Получить персональное предложение'>
+                    <input class='input-xlarge offer_form-input' type='text' name='orderShellPpuName' id='orderShellPpuName' value="{{ old('orderShellPpuName') }}" placeholder="Имя" required>
+                    <input class='input-xlarge offer_form-input' type='text' name='orderShellPpuPhone' id='orderShellPpuPhone' value="{{ old('orderShellPpuPhone') }}" placeholder="Номер телефона" required>
+                    <input type='submit' class='btn btn-primary offer_form-btn' value='Получить расчёт стоимости'>
                 </form>
             </div>
         </div>

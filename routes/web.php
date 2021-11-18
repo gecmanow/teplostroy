@@ -20,6 +20,8 @@ Route::post('modal', 'App\Http\Controllers\AppController@modal')->name('modal');
 Route::get('tovary-i-uslugi', '\App\Http\Controllers\CategoryController@index')->name('categories');
 Route::get('tovary-i-uslugi/realizovannye-proekty', '\App\Http\Controllers\ServiceController@projects')->name('projects');
 Route::get('tovary-i-uslugi/teploizolyatsiya-iz-ppu/montazh-teploizolyatsii-shef-montazh', '\App\Http\Controllers\ServiceController@installInsulation');
+Route::get('tovary-i-uslugi/teploizolyatsiya-iz-ppu/scorlupa-ppu', '\App\Http\Controllers\ServiceController@shellPpu');
+Route::get('tovary-i-uslugi/montazhnye-raboty-remont-kotelnyh/remont-kotelnyh-i-kotelnogo-oborudovaniya', '\App\Http\Controllers\ServiceController@boilerRepair');
 Route::get('tovary-i-uslugi/{category_url}', '\App\Http\Controllers\CategoryController@show');
 Route::get('tovary-i-uslugi/{category_url}/{service_url}', '\App\Http\Controllers\ServiceController@show');
 Route::get('vakansii-kompanii', '\App\Http\Controllers\ServiceController@vacancy')->name('vacancy');
@@ -46,5 +48,7 @@ Route::post('onlain-zakaz/step3/service2', 'App\Http\Controllers\MultiStepFormCo
 Route::post('onlain-zakaz/step3/service3', 'App\Http\Controllers\MultiStepFormController@step3service3')->name('step3service3');
 Route::get('onlain-zakaz/step4', 'App\Http\Controllers\MultiStepFormController@step4')->name('step4');
 Route::post('onlain-zakaz/step4/send', 'App\Http\Controllers\MultiStepFormController@step4send')->name('step4send');
-Route::post('offer-form', 'App\Http\Controllers\PageController@offerForm')->name('offer-form');
+Route::post('insulation-form', 'App\Http\Controllers\PageController@insulationForm')->name('insulationForm');
+Route::post('boiler-form', 'App\Http\Controllers\PageController@boilerForm')->name('boilerForm');
+Route::post('shell-form', 'App\Http\Controllers\PageController@shellForm')->name('shellForm');
 Route::get('thanks', 'App\Http\Controllers\MultiStepFormController@thanks')->name('thanks');

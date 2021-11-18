@@ -79,7 +79,7 @@ class PageController extends Controller
         return redirect()->route('thanks');
     }
 
-    public function offerForm(Request $request)
+    public function insulationForm(Request $request)
     {
         $rules = [
             'orderInstallInsulationName' => 'required|max:30',
@@ -101,7 +101,71 @@ class PageController extends Controller
         $admin_email = env('MAIL_ADMIN_EMAIL');
 
         $data = array('name' => $name, 'phone' => $phone);
-        Mail::send('public.email.order', $data, function($message) use ($name, $admin_email) {
+        Mail::send('public.email.order-install-insulation', $data, function($message) use ($name, $admin_email) {
+            $message->to($admin_email, $name)->subject('Заявка с сайта');
+            $message->from(env('MAIL_ADMIN_EMAIL'), 'СК Теплострой');
+        });
+
+        $request->session()->flush();
+
+        return redirect()->route('thanks');
+    }
+
+    public function boilerForm(Request $request)
+    {
+        $rules = [
+            'orderBoilerRepairName' => 'required|max:30',
+            'orderBoilerRepairPhone' => 'required'
+        ];
+
+        $messages = [
+            'orderBoilerRepairName.required' => 'Поле :attribute обязательно для заполнения.',
+            'orderBoilerRepairPhone.required' => 'Поле :attribute обязательно для заполнения.'
+        ];
+
+        $validated = Validator::make($request->all(), $rules, $messages, [
+            'orderBoilerRepairName' => 'Имя',
+            'orderBoilerRepairPhone' => 'Телефон'
+        ])->validateWithBag('orderBoilerRepairForm');
+
+        $name = $request->input('orderBoilerRepairName');
+        $phone = $request->input('orderBoilerRepairPhone');
+        $admin_email = env('MAIL_ADMIN_EMAIL');
+
+        $data = array('name' => $name, 'phone' => $phone);
+        Mail::send('public.email.order-boiler-repair', $data, function($message) use ($name, $admin_email) {
+            $message->to($admin_email, $name)->subject('Заявка с сайта');
+            $message->from(env('MAIL_ADMIN_EMAIL'), 'СК Теплострой');
+        });
+
+        $request->session()->flush();
+
+        return redirect()->route('thanks');
+    }
+
+    public function shellForm(Request $request)
+    {
+        $rules = [
+            'orderShellPpuName' => 'required|max:30',
+            'orderShellPpuPhone' => 'required'
+        ];
+
+        $messages = [
+            'orderShellPpuName.required' => 'Поле :attribute обязательно для заполнения.',
+            'orderShellPpuPhone.required' => 'Поле :attribute обязательно для заполнения.'
+        ];
+
+        $validated = Validator::make($request->all(), $rules, $messages, [
+            'orderShellPpuName' => 'Имя',
+            'orderShellPpuPhone' => 'Телефон'
+        ])->validateWithBag('orderShellPpuForm');
+
+        $name = $request->input('orderShellPpuName');
+        $phone = $request->input('orderShellPpuPhone');
+        $admin_email = env('MAIL_ADMIN_EMAIL');
+
+        $data = array('name' => $name, 'phone' => $phone);
+        Mail::send('public.email.order-shell-ppu', $data, function($message) use ($name, $admin_email) {
             $message->to($admin_email, $name)->subject('Заявка с сайта');
             $message->from(env('MAIL_ADMIN_EMAIL'), 'СК Теплострой');
         });
