@@ -68,8 +68,8 @@ header("Cache-Control: max-age=0, public");
 @include('public.inc.scripts')
 <link rel="stylesheet" href="https://cdn.envybox.io/widget/cbk.css">
 <script type="text/javascript" src="https://cdn.envybox.io/widget/cbk.js?wcb_code=d879a45c4408933937baf5a10afe2bc6" charset="UTF-8" async></script>
-<a class="sticky-btn-link" href="tel:+79135396539">
+<!--<a class="sticky-btn-link" href="tel:+79135396539">
     <span>Связаться с нами</span>
-</a>
+</a>-->
 </body>
 </html>
