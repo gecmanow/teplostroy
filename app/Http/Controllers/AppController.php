@@ -83,7 +83,6 @@ class AppController extends Controller
             'modalName' => 'Имя',
             'modalPhone' => 'Телефон'
         ])->validateWithBag('orderModalForm');
-        var_dump($validated);
 
         $name = $request->input('modalName');
         $phone = $request->input('modalPhone');
