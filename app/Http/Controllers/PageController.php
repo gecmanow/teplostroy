@@ -29,17 +29,6 @@ class PageController extends Controller
         return view('public.pages.order', ['step' => $step]);
     }
 
-    /**
-    array:6 [
-    "_token" => "8i1zhc8H3Elfbt6od246UVA0eTmIV3aH3hIkYkKn"
-    "orderOneStepName" => "test"
-    "orderOneStepEmail" => "89051234567"
-    "orderOneStepPhone" => "test@test.ru"
-    "orderOneStepComment" => "qweqweqweqwe"
-    "g-recaptcha-response" => null
-    ]
-     */
-
     public function orderSend(Request $request)
     {
         $rules = [
@@ -66,13 +55,51 @@ class PageController extends Controller
         $email = $request->input('orderOneStepEmail');
         $phone = $request->input('orderOneStepPhone');
         $comment = $request->input('orderOneStepComment');
-        $admin_email = env('MAIL_ADMIN_EMAIL');
+        $token = env('TELEGRAM_TOKEN');
+        $empty = 'Не заполнено';
 
-        $data = array('name' => $name, 'email' => $email, 'phone' => $phone, 'comment' => $comment);
-        Mail::send('public.email.order', $data, function($message) use ($name, $admin_email) {
-            $message->to($admin_email, $name)->subject('Заявка с сайта');
-            $message->from(env('MAIL_ADMIN_EMAIL'), 'СК Теплострой');
-        });
+        if ($comment == '') {
+            $comment = $empty;
+        }
+
+        $subject = "Заявка с сайта ck-tct.ru (Страница onlain-zakaz, одношаговая форма)";
+        $msg = "Тип заявки: ". $subject
+            ."\nИмя: ". $name
+            ."\nТелефон: ". $phone
+            ."\nEmail: " . $email
+            ."\nКомментарий: " . $comment;
+        $userAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
+
+        $chatId = '-642242554';
+        $url = "https://api.telegram.org/bot" . $token . "/sendMessage";
+        $params = array(
+            'chat_id' => $chatId,
+            'text' => $msg,
+            'disable_web_page_preview' => null,
+            'reply_to_message_id' => null,
+            'reply_markup' => null
+        );
+
+        $options = array(
+            CURLOPT_URL => $url,
+            CURLOPT_POST => 1,
+            CURLOPT_POSTFIELDS => $params,
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HEADER         => false,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_ENCODING       => "",
+            CURLOPT_USERAGENT      => $userAgent,
+            CURLOPT_AUTOREFERER    => true,
+            CURLOPT_CONNECTTIMEOUT => 120,
+            CURLOPT_TIMEOUT        => 120,
+            CURLOPT_MAXREDIRS      => 10,
+            CURLOPT_SSL_VERIFYPEER => false
+        );
+        $ch = curl_init();
+        curl_setopt_array($ch, $options);
+        curl_exec($ch);
+        curl_close($ch);
 
         $request->session()->flush();
 
@@ -98,13 +125,44 @@ class PageController extends Controller
 
         $name = $request->input('orderInstallInsulationName');
         $phone = $request->input('orderInstallInsulationPhone');
-        $admin_email = env('MAIL_ADMIN_EMAIL');
+        $token = env('TELEGRAM_TOKEN');
 
-        $data = array('name' => $name, 'phone' => $phone);
-        Mail::send('public.email.order-install-insulation', $data, function($message) use ($name, $admin_email) {
-            $message->to($admin_email, $name)->subject('Заявка с сайта');
-            $message->from(env('MAIL_ADMIN_EMAIL'), 'СК Теплострой');
-        });
+        $subject = "Заявка с сайта ck-tct.ru (монтаж теплоизоляции)";
+        $msg = "Тип заявки: ". $subject
+            ."\nИмя: ". $name
+            ."\nТелефон: ". $phone;
+        $userAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
+
+        $chatId = '-642242554';
+        $url = "https://api.telegram.org/bot" . $token . "/sendMessage";
+        $params = array(
+            'chat_id' => $chatId,
+            'text' => $msg,
+            'disable_web_page_preview' => null,
+            'reply_to_message_id' => null,
+            'reply_markup' => null
+        );
+
+        $options = array(
+            CURLOPT_URL => $url,
+            CURLOPT_POST => 1,
+            CURLOPT_POSTFIELDS => $params,
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HEADER         => false,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_ENCODING       => "",
+            CURLOPT_USERAGENT      => $userAgent,
+            CURLOPT_AUTOREFERER    => true,
+            CURLOPT_CONNECTTIMEOUT => 120,
+            CURLOPT_TIMEOUT        => 120,
+            CURLOPT_MAXREDIRS      => 10,
+            CURLOPT_SSL_VERIFYPEER => false
+        );
+        $ch = curl_init();
+        curl_setopt_array($ch, $options);
+        curl_exec($ch);
+        curl_close($ch);
 
         $request->session()->flush();
 
@@ -130,13 +188,44 @@ class PageController extends Controller
 
         $name = $request->input('orderBoilerRepairName');
         $phone = $request->input('orderBoilerRepairPhone');
-        $admin_email = env('MAIL_ADMIN_EMAIL');
+        $token = env('TELEGRAM_TOKEN');
 
-        $data = array('name' => $name, 'phone' => $phone);
-        Mail::send('public.email.order-boiler-repair', $data, function($message) use ($name, $admin_email) {
-            $message->to($admin_email, $name)->subject('Заявка с сайта');
-            $message->from(env('MAIL_ADMIN_EMAIL'), 'СК Теплострой');
-        });
+        $subject = "Заявка с сайта ck-tct.ru (ремонт котельных)";
+        $msg = "Тип заявки: ". $subject
+            ."\nИмя: ". $name
+            ."\nТелефон: ". $phone;
+        $userAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
+
+        $chatId = '-642242554';
+        $url = "https://api.telegram.org/bot" . $token . "/sendMessage";
+        $params = array(
+            'chat_id' => $chatId,
+            'text' => $msg,
+            'disable_web_page_preview' => null,
+            'reply_to_message_id' => null,
+            'reply_markup' => null
+        );
+
+        $options = array(
+            CURLOPT_URL => $url,
+            CURLOPT_POST => 1,
+            CURLOPT_POSTFIELDS => $params,
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HEADER         => false,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_ENCODING       => "",
+            CURLOPT_USERAGENT      => $userAgent,
+            CURLOPT_AUTOREFERER    => true,
+            CURLOPT_CONNECTTIMEOUT => 120,
+            CURLOPT_TIMEOUT        => 120,
+            CURLOPT_MAXREDIRS      => 10,
+            CURLOPT_SSL_VERIFYPEER => false
+        );
+        $ch = curl_init();
+        curl_setopt_array($ch, $options);
+        curl_exec($ch);
+        curl_close($ch);
 
         $request->session()->flush();
 
@@ -162,13 +251,44 @@ class PageController extends Controller
 
         $name = $request->input('orderShellPpuName');
         $phone = $request->input('orderShellPpuPhone');
-        $admin_email = env('MAIL_ADMIN_EMAIL');
+        $token = env('TELEGRAM_TOKEN');
 
-        $data = array('name' => $name, 'phone' => $phone);
-        Mail::send('public.email.order-shell-ppu', $data, function($message) use ($name, $admin_email) {
-            $message->to($admin_email, $name)->subject('Заявка с сайта');
-            $message->from(env('MAIL_ADMIN_EMAIL'), 'СК Теплострой');
-        });
+        $subject = "Заявка с сайта ck-tct.ru (скорлупа ППУ)";
+        $msg = "Тип заявки: ". $subject
+            ."\nИмя: ". $name
+            ."\nТелефон: ". $phone;
+        $userAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
+
+        $chatId = '-642242554';
+        $url = "https://api.telegram.org/bot" . $token . "/sendMessage";
+        $params = array(
+            'chat_id' => $chatId,
+            'text' => $msg,
+            'disable_web_page_preview' => null,
+            'reply_to_message_id' => null,
+            'reply_markup' => null
+        );
+
+        $options = array(
+            CURLOPT_URL => $url,
+            CURLOPT_POST => 1,
+            CURLOPT_POSTFIELDS => $params,
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HEADER         => false,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_ENCODING       => "",
+            CURLOPT_USERAGENT      => $userAgent,
+            CURLOPT_AUTOREFERER    => true,
+            CURLOPT_CONNECTTIMEOUT => 120,
+            CURLOPT_TIMEOUT        => 120,
+            CURLOPT_MAXREDIRS      => 10,
+            CURLOPT_SSL_VERIFYPEER => false
+        );
+        $ch = curl_init();
+        curl_setopt_array($ch, $options);
+        curl_exec($ch);
+        curl_close($ch);
 
         $request->session()->flush();
 

@@ -80,13 +80,51 @@ class MultiStepFormController extends Controller
         $email = $request->input('step2email');
         $phone = $request->input('step2phone');
         $comment = $request->input('step2comment');
-        $admin_email = env('MAIL_ADMIN_EMAIL');
+        $token = env('TELEGRAM_TOKEN');
+        $empty = 'Не заполнено';
 
-        $data = array('name' => $name, 'email' => $email, 'phone' => $phone, 'comment' => $comment);
-        Mail::send('public.email.order', $data, function($message) use ($name, $admin_email) {
-            $message->to($admin_email, $name)->subject('Заявка с сайта');
-            $message->from(env('MAIL_ADMIN_EMAIL'), 'СК Теплострой');
-        });
+        if ($comment == '') {
+            $comment = $empty;
+        }
+
+        $subject = "Заявка с сайта ck-tct.ru (многошаговая форма, скорлупа)";
+        $msg = "Тип заявки: ". $subject
+            ."\nИмя: ". $name
+            ."\nТелефон: ". $phone
+            ."\nEmail: " . $email
+            ."\nКомментарий: " . $comment;
+        $userAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
+
+        $chatId = '-642242554';
+        $url = "https://api.telegram.org/bot" . $token . "/sendMessage";
+        $params = array(
+            'chat_id' => $chatId,
+            'text' => $msg,
+            'disable_web_page_preview' => null,
+            'reply_to_message_id' => null,
+            'reply_markup' => null
+        );
+
+        $options = array(
+            CURLOPT_URL => $url,
+            CURLOPT_POST => 1,
+            CURLOPT_POSTFIELDS => $params,
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HEADER         => false,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_ENCODING       => "",
+            CURLOPT_USERAGENT      => $userAgent,
+            CURLOPT_AUTOREFERER    => true,
+            CURLOPT_CONNECTTIMEOUT => 120,
+            CURLOPT_TIMEOUT        => 120,
+            CURLOPT_MAXREDIRS      => 10,
+            CURLOPT_SSL_VERIFYPEER => false
+        );
+        $ch = curl_init();
+        curl_setopt_array($ch, $options);
+        curl_exec($ch);
+        curl_close($ch);
 
         $request->session()->flush();
 
@@ -400,79 +438,169 @@ class MultiStepFormController extends Controller
         $phone                = $request->input('phone');
         $email                = $request->input('email');
         $communication_method = $request->input('communication_method');
-        $admin_email          = env('MAIL_ADMIN_EMAIL');
+        $token = env('TELEGRAM_TOKEN');
+        $empty = 'Не заполнено';
 
-        $data = array(
-            'requisites'      => $requisites,
-            'boiler_type' => $boiler_type,
-            'services_1'        => $services_1,
-            'services_2'      => $services_2,
-            'services_3' => $services_3,
-            'services_4'        => $services_4,
-            'services_5'      => $services_5,
-            'services_6' => $services_6,
-            'services_7'        => $services_7,
-            'services_8'      => $services_8,
-            'type_heat_supply_system_1' => $type_heat_supply_system_1,
-            'type_heat_supply_system_2'        => $type_heat_supply_system_2,
-            'type_heat_supply_system_3'      => $type_heat_supply_system_3,
-            'type_heat_supply_system_4' => $type_heat_supply_system_4,
-            'heating_capacity'        => $heating_capacity,
-            'quality_and_power'      => $quality_and_power,
-            'heat_load_distribution_1' => $heat_load_distribution_1,
-            'heat_load_distribution_2'        => $heat_load_distribution_2,
-            'heat_load_distribution_3'      => $heat_load_distribution_3,
-            'heat_load_distribution_4' => $heat_load_distribution_4,
-            'water_temp'        => $water_temp,
-            'water_consumption'      => $water_consumption,
-            'water_pressure_1' => $water_pressure_1,
-            'water_pressure_2'        => $water_pressure_2,
-            'suspended_substances'      => $suspended_substances,
-            'transparency' => $transparency,
-            'alkalinity'        => $alkalinity,
-            'rigidity'      => $rigidity,
-            'iron' => $iron,
-            'main_fuel'        => $main_fuel,
-            'reserve_fuel'      => $reserve_fuel,
-            'fuel_mark' => $fuel_mark,
-            'calorific'        => $calorific,
-            'size'      => $size,
-            'modular_blocks_quality' => $modular_blocks_quality,
-            'chimney'        => $chimney,
-            'boiler_fuel_supply'      => $boiler_fuel_supply,
-            'boiler_room_fuel_supply' => $boiler_room_fuel_supply,
-            'boiler_room_removal_ash'        => $boiler_room_removal_ash,
-            'boiler_room_category'      => $boiler_room_category,
-            'boiler_room_equipment_1' => $boiler_room_equipment_1,
-            'boiler_room_equipment_2'        => $boiler_room_equipment_2,
-            'boiler_room_equipment'      => $boiler_room_equipment,
-            'limitations' => $limitations,
-            'additional_conditions'        => $additional_conditions,
-            'delivery_time' => $delivery_time,
-            'delivery_address'        => $delivery_address,
-            'installation_address'      => $installation_address,
-            'object_name' => $object_name,
-            'location'             => $location,
-            'diameter'             => $diameter,
-            'length'               => $length,
-            'temp'                 => $temp,
-            'object'               => $object,
-            'boiler'               => $boiler,
-            'fuel'                 => $fuel,
-            'power'                => $power,
-            'description'          => $description,
-            'company_name'         => $company_name,
-            'name'                 => $name,
-            'post'                 => $post,
-            'email'                => $email,
-            'phone'                => $phone,
-            'communication_method' => $communication_method
+        if ($requisites == '') {$requisites = $empty;}
+        if ($boiler_type == '') {$boiler_type = $empty;}
+        if ($services_1 == '') {$services_1 = $empty;}
+        if ($services_2 == '') {$services_2 = $empty;}
+        if ($services_3 == '') {$services_3 = $empty;}
+        if ($services_4 == '') {$services_4 = $empty;}
+        if ($services_5 == '') {$services_5 = $empty;}
+        if ($services_6 == '') {$services_6 = $empty;}
+        if ($services_7 == '') {$services_7 = $empty;}
+        if ($services_8 == '') {$services_8 = $empty;}
+        if ($type_heat_supply_system_1 == '') {$type_heat_supply_system_1 = $empty;}
+        if ($type_heat_supply_system_2 == '') {$type_heat_supply_system_2 = $empty;}
+        if ($type_heat_supply_system_3 == '') {$type_heat_supply_system_3 = $empty;}
+        if ($type_heat_supply_system_4 == '') {$type_heat_supply_system_4 = $empty;}
+        if ($heating_capacity == '') {$heating_capacity = $empty;}
+        if ($quality_and_power == '') {$quality_and_power = $empty;}
+        if ($heat_load_distribution_1 == '') {$heat_load_distribution_1 = $empty;}
+        if ($heat_load_distribution_2 == '') {$heat_load_distribution_2 = $empty;}
+        if ($heat_load_distribution_3 == '') {$heat_load_distribution_3 = $empty;}
+        if ($heat_load_distribution_4 == '') {$heat_load_distribution_4 = $empty;}
+        if ($water_temp == '') {$water_temp = $empty;}
+        if ($water_consumption == '') {$water_consumption = $empty;}
+        if ($water_pressure_1 == '') {$water_pressure_1 = $empty;}
+        if ($water_pressure_2 == '') {$water_pressure_2 = $empty;}
+        if ($suspended_substances == '') {$suspended_substances = $empty;}
+        if ($transparency == '') {$transparency = $empty;}
+        if ($alkalinity == '') {$alkalinity = $empty;}
+        if ($rigidity == '') {$rigidity = $empty;}
+        if ($iron == '') {$iron = $empty;}
+        if ($main_fuel == '') {$main_fuel = $empty;}
+        if ($reserve_fuel == '') {$reserve_fuel = $empty;}
+        if ($fuel_mark == '') {$fuel_mark = $empty;}
+        if ($calorific == '') {$calorific = $empty;}
+        if ($size == '') {$size = $empty;}
+        if ($modular_blocks_quality == '') {$modular_blocks_quality = $empty;}
+        if ($chimney == '') {$chimney = $empty;}
+        if ($boiler_fuel_supply == '') {$boiler_fuel_supply = $empty;}
+        if ($boiler_room_fuel_supply == '') {$boiler_room_fuel_supply = $empty;}
+        if ($boiler_room_removal_ash == '') {$boiler_room_removal_ash = $empty;}
+        if ($boiler_room_category == '') {$boiler_room_category = $empty;}
+        if ($boiler_room_equipment_1 == '') {$boiler_room_equipment_1 = $empty;}
+        if ($boiler_room_equipment_2 == '') {$boiler_room_equipment_2 = $empty;}
+        if ($boiler_room_equipment == '') {$boiler_room_equipment = $empty;}
+        if ($limitations == '') {$limitations = $empty;}
+        if ($additional_conditions == '') {$additional_conditions = $empty;}
+        if ($delivery_time == '') {$delivery_time = $empty;}
+        if ($delivery_address == '') {$delivery_address = $empty;}
+        if ($installation_address == '') {$installation_address = $empty;}
+        if ($object_name == '') {$object_name = $empty;}
+        if ($location == '') {$location = $empty;}
+        if ($diameter == '') {$diameter = $empty;}
+        if ($length == '') {$length = $empty;}
+        if ($temp == '') {$temp = $empty;}
+        if ($object == '') {$object = $empty;}
+        if ($boiler == '') {$boiler = $empty;}
+        if ($fuel == '') {$fuel = $empty;}
+        if ($power == '') {$power = $empty;}
+        if ($description == '') {$description = $empty;}
+        if ($company_name == '') {$company_name = $empty;}
+        if ($post == '') {$post = $empty;}
+        if ($communication_method == '') {$communication_method = $empty;}
+
+        $subject = "Заявка с сайта ck-tct.ru (многошаговая форма)";
+        $msg = "Тип заявки: ". $subject
+            ."\nИмя: ". $name
+            ."\nТелефон: ". $phone
+            ."\nEmail: " . $email
+            ."\nРеквизиты: " . $requisites
+            ."\nТип котельной установки: " . $boiler_type
+            ."\nСостав необходимых работ: " . $services_1
+            ."\nСостав необходимых работ: " . $services_2
+            ."\nСостав необходимых работ: " . $services_3
+            ."\nСостав необходимых работ: " . $services_4
+            ."\nСостав необходимых работ: " . $services_5
+            ."\nСостав необходимых работ: " . $services_6
+            ."\nСостав необходимых работ: " . $services_7
+            ."\nСостав необходимых работ: " . $services_8
+            ."\nТип системы теплоснабжения: " . $type_heat_supply_system_1
+            ."\nТип системы теплоснабжения: " . $type_heat_supply_system_2
+            ."\nТип системы теплоснабжения: " . $type_heat_supply_system_3
+            ."\nТип системы теплоснабжения: " . $type_heat_supply_system_4
+            ."\nОбщая теплопроизводительность, Гкал/час или кВт: " . $heating_capacity
+            ."\nКоличество котлов и единичная мощность котла, Гкал/час или кВт: " . $quality_and_power
+            ."\nНа ГВС, Гкал/час: " . $heat_load_distribution_1
+            ."\nНа вентиляцию, Гкал/час: " . $heat_load_distribution_2
+            ."\nНа вентиляцию, Гкал/час: " . $heat_load_distribution_3
+            ."\nТемпературный режим системы отопления, С (вход-выход): " . $heat_load_distribution_4
+            ."\nРасчетная температура воды на ГВС, С: " . $water_temp
+            ."\nРасход горячей воды на ГВС, м3/час: " . $water_consumption
+            ."\nДавление воды в тепловой сети, Мпа: " . $water_pressure_1
+            ."\nДавление воды в водопроводе, Мпа: " . $water_pressure_2
+            ."\nСодержание взвешенных веществ, мг/кг: " . $suspended_substances
+            ."\nПрозрачность по шифту (или кольцу), см: " . $transparency
+            ."\nЩелочность, мг/кг: " . $alkalinity
+            ."\nОбщая жесткость, мг-экв/кг: " . $rigidity
+            ."\nСодержание железа в пересчете на Fe, мг/кг: " . $iron
+            ."\nОсновное топливо: " . $main_fuel
+            ."\nРезервное топливо: " . $reserve_fuel
+            ."\nМарка топлива: " . $fuel_mark
+            ."\nКалорийность топлива, ккал/кг: " . $calorific
+            ."\nРазмер кусков топлива: " . $size
+            ."\nКоличество модульных блоков, шт: " . $modular_blocks_quality
+            ."\nНаличие дымовой трубы (размеры), мм: " . $chimney
+            ."\nПодача топлива в котел: " . $boiler_fuel_supply
+            ."\nПодача топлива в модульную котельную: " . $boiler_room_fuel_supply
+            ."\nУдаление золы из котельной: " . $boiler_room_removal_ash
+            ."\nКатегория котельной (наличие резервного котла): " . $boiler_room_category
+            ."\nНасосное оборудование: " . $boiler_room_equipment_1
+            ."\nЗапорная арматура: " . $boiler_room_equipment_2
+            ."\nДополнительно: " . $boiler_room_equipment
+            ."\nНаличие ограничений: " . $limitations
+            ."\nДополнительные условия по проектированию: " . $additional_conditions
+            ."\nТребуемый срок поставки: " . $delivery_time
+            ."\nАдрес поставки: " . $delivery_address
+            ."\nАдрес монтажа: " . $installation_address
+            ."\nНаименование отапливаемого объекта: " . $object_name
+            ."\nМестонахождение: " . $location
+            ."\nДиаметр: " . $diameter
+            ."\nПротяженность: " . $length
+            ."\nТемпература носителя: " . $temp
+            ."\nОбъект: " . $object
+            ."\nМарка котла: " . $boiler
+            ."\nТип топлива: " . $fuel
+            ."\nМощность: " . $power
+            ."\nОписание работ: " . $description
+            ."\nНазвание компании: " . $company_name
+            ."\nДолжность: " . $post
+            ."\nМетод связи: " . $communication_method;
+        $userAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
+
+        $chatId = '-642242554';
+        $url = "https://api.telegram.org/bot" . $token . "/sendMessage";
+        $params = array(
+            'chat_id' => $chatId,
+            'text' => $msg,
+            'disable_web_page_preview' => null,
+            'reply_to_message_id' => null,
+            'reply_markup' => null
         );
 
-        Mail::send('public.email.order', $data, function($message) use ($name, $admin_email) {
-            $message->to($admin_email, $name)->subject('Заявка с сайта');
-            $message->from(env('MAIL_ADMIN_EMAIL'), 'СК Теплострой');
-        });
+        $options = array(
+            CURLOPT_URL => $url,
+            CURLOPT_POST => 1,
+            CURLOPT_POSTFIELDS => $params,
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HEADER         => false,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_ENCODING       => "",
+            CURLOPT_USERAGENT      => $userAgent,
+            CURLOPT_AUTOREFERER    => true,
+            CURLOPT_CONNECTTIMEOUT => 120,
+            CURLOPT_TIMEOUT        => 120,
+            CURLOPT_MAXREDIRS      => 10,
+            CURLOPT_SSL_VERIFYPEER => false
+        );
+        $ch = curl_init();
+        curl_setopt_array($ch, $options);
+        curl_exec($ch);
+        curl_close($ch);
 
         $request->session()->flush();
 
