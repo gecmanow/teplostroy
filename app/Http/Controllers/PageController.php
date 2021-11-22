@@ -36,19 +36,23 @@ class PageController extends Controller
             'orderOneStepEmail' => 'required',
             'orderOneStepPhone' => 'required',
             'orderOneStepComment' => 'nullable',
+            'g-recaptcha-response' => 'required|captcha'
         ];
 
         $messages = [
             'orderOneStepName.required' => 'Поле :attribute обязательно для заполнения.',
             'orderOneStepEmail.required' => 'Поле :attribute обязательно для заполнения.',
-            'orderOneStepPhone.required' => 'Поле :attribute обязательно для заполнения.'
+            'orderOneStepPhone.required' => 'Поле :attribute обязательно для заполнения.',
+            'g-recaptcha-response.required' => 'Вы не заполнили :attribute.',
+            'g-recaptcha-response.captcha' => 'Вы не прошли проверку :attribute.'
         ];
 
         $validated = Validator::make($request->all(), $rules, $messages, [
             'orderOneStepName' => 'Имя',
             'orderOneStepEmail' => 'Email',
             'orderOneStepPhone' => 'Телефон',
-            'orderOneStepComment' => 'Комментарий'
+            'orderOneStepComment' => 'Комментарий',
+            'g-recaptcha-response' => 'reCaptcha'
         ])->validateWithBag('orderOneStepForm');
 
         $name = $request->input('orderOneStepName');
