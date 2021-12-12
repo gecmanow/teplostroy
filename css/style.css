@@ -190,7 +190,7 @@ html, body {
     background-color: rgba(0, 136, 204, 1);
 }
 .contacts_social-link.whatsapp {
-    background-color: rgba(13, 217, 9, 1);
+    background-color: rgba(67, 216, 84, 1);
 }
 .contacts_social-link:hover {
     text-decoration: none;
@@ -201,6 +201,338 @@ html, body {
     height: 30px;
     fill: #ffffff;
 }
+@font-face {
+    font-family: 'Font Awesome 5 Free';
+    font-style: normal;
+    font-weight: 900;
+    font-display: block;
+    src: url("../fonts/fa-solid-900.eot");
+    src: url("../fonts/fa-solid-900.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/fa-solid-900.woff2") format("woff2"),
+        url("../fonts/fa-solid-900.woff") format("woff"),
+        url("../fonts/fa-solid-900.ttf") format("truetype"),
+        url("../fonts/fa-solid-900.svg#fontawesome") format("svg");
+}
+@font-face {
+    font-family: 'Font Awesome 5 Free';
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+    src: url("../fonts/fa-regular-400.eot");
+    src: url("../fonts/fa-regular-400.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/fa-regular-400.woff2") format("woff2"),
+        url("../fonts/fa-regular-400.woff") format("woff"),
+        url("../fonts/fa-regular-400.ttf") format("truetype"),
+        url("../fonts/fa-regular-400.svg#fontawesome") format("svg");
+}
+
+@font-face {
+    font-family: 'Font Awesome 5 Brands';
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+    src: url("../fonts/fa-brands-400.eot");
+    src: url("../fonts/fa-brands-400.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/fa-brands-400.woff2") format("woff2"),
+    url("../fonts/fa-brands-400.woff") format("woff"),
+    url("../fonts/fa-brands-400.ttf") format("truetype"),
+    url("../fonts/fa-brands-400.svg#fontawesome") format("svg");
+}
+
+.fab {
+    font-family: 'Font Awesome 5 Brands';
+    font-weight: 400; }
+
+.fa,
+.fas {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+}
+
+.fa,
+.fas,
+.far,
+.fal,
+.fad,
+.fab {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+.fa-phone:before {
+    content: "\f095";
+}
+.fa-telegram:before {
+    content: "\f2c6";
+}
+.fa-telegram-plane:before {
+    content: "\f3fe";
+}
+.fa-whatsapp:before {
+    content: "\f232";
+}
+.fa-whatsapp-square:before {
+    content: "\f40c";
+}
+.callback_multi-button {
+    background: linear-gradient(to top, #0dd909, #04e800);
+    border: 2px solid #0dd909;
+    border-radius: 50%;
+    box-shadow: 0 8px 10px rgba(13, 217, 9, 0.3);
+    cursor: pointer;
+    width: 68px;
+    height: 68px;
+    text-align: center;
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
+    padding: 10px;
+    z-index: 99999;
+    transition: .3s;
+    -webkit-animation: hoverWave linear 1s infinite;
+    animation: hoverWave linear 1s infinite;
+}
+.callback_back {
+    position: relative;
+}
+.callback_multi-button:hover {
+    z-index: 1;
+    background: linear-gradient(to top, #0dd909, #04e800);
+    color: transparent;
+    transition: .3s;
+}
+.callback_multi-button:hover i {
+    transition: .3s;
+}
+.callback_multi-button i  {
+    color: #ffffff;
+    font-size: 4rem;
+    transition: .5s ease-in-out;
+}
+.callback_phone > a > i {
+    animation: 1200ms ease 0s normal none 1 running shake;
+    animation-iteration-count: infinite;
+    -webkit-animation: 1200ms ease 0s normal none 1 running shake;
+    -webkit-animation-iteration-count: infinite;
+}
+.callback_dropdown {
+
+    z-index: 999999;
+    position: absolute;
+    right: -15%;
+    bottom: 120%;
+    padding-bottom: 1.5rem;
+}
+.callback_dropdown-item {
+    padding-bottom: 1rem;
+    z-index: 999999;
+}
+.callback_dropdown-item i {
+    padding: 10px 12.5px;
+    border: 0;
+    border-radius: 100px;
+    color: #ffffff;
+}
+.callback_dropdown-item_link {
+    display: flex;
+    flex-flow: row-reverse nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    text-decoration: none;
+}
+.callback_dropdown-item_link:hover, .callback_dropdown-item_link:active, .callback_dropdown-item_link:visited,
+.callback_dropdown-item_link:focus {
+    text-decoration: none;
+}
+.callback_dropdown-item_text {
+    background-color: #212121;
+    padding: 0.5rem 1.5rem;
+    border: 0;
+    border-radius: 50px;
+    color: #ffffff;
+    font-size: 18px;
+    white-space: nowrap;
+    margin-right: 1rem;
+    z-index: 999999;
+}
+.callback_phone-text {
+    background-color: #212121;
+    padding: 0.5rem 1.5rem;
+    border: 0;
+    border-radius: 50px;
+    color: #ffffff;
+    font-size: 18px;
+    white-space: nowrap;
+    z-index: 999999;
+}
+#callback_phone-text_back {
+    padding-right: 25px;
+}
+#callback_phone-icon {
+    margin: 0 auto;
+    padding-right: 5px;
+}
+#callback_telegram-icon {
+    background-color: #0088cc;
+}
+#callback_whatsapp-icon {
+    background-color: #25d366;
+}
+#callback_phone-icon-mobile {
+    background-color: #0dd909;
+    padding: 10px!important;
+}
+
+.callback_stop {
+    display: none;
+}
+@-webkit-keyframes hoverWave {
+    0% {
+        box-shadow:0 8px 10px rgba(13, 217, 9, 0.3),0 0 0 0 rgba(13, 217, 9, 0.2),0 0 0 0 rgba(13, 217, 9, 0.2)
+    }
+    40% {
+        box-shadow:0 8px 10px rgba(13, 217, 9, 0.3),0 0 0 15px rgba(13, 217, 9, 0.2),0 0 0 0 rgba(13, 217, 9, 0.2)
+    }
+    80% {
+        box-shadow:0 8px 10px rgba(13, 217, 9, 0.3),0 0 0 30px rgba(13, 217, 9, 0),0 0 0 26.7px rgba(13, 217, 9, 0.067)
+    }
+    100% {
+        box-shadow:0 8px 10px rgba(13, 217, 9, 0.3),0 0 0 30px rgba(13, 217, 9, 0),0 0 0 40px rgba(13, 217, 9, 0.0)
+    }
+}@keyframes hoverWave {
+     0% {
+         box-shadow:0 8px 10px rgba(13, 217, 9, 0.3),0 0 0 0 rgba(13, 217, 9, 0.2),0 0 0 0 rgba(13, 217, 9, 0.2)
+     }
+     40% {
+         box-shadow:0 8px 10px rgba(13, 217, 9, 0.3),0 0 0 15px rgba(13, 217, 9, 0.2),0 0 0 0 rgba(13, 217, 9, 0.2)
+     }
+     80% {
+         box-shadow:0 8px 10px rgba(13, 217, 9, 0.3),0 0 0 30px rgba(13, 217, 9, 0),0 0 0 26.7px rgba(13, 217, 9, 0.067)
+     }
+     100% {
+         box-shadow:0 8px 10px rgba(13, 217, 9, 0.3),0 0 0 30px rgba(13, 217, 9, 0),0 0 0 40px rgba(13, 217, 9, 0.0)
+     }
+ }
+/* animations icon */
+@keyframes shake {
+    0% {
+        transform: rotateZ(0deg);
+        -ms-transform: rotateZ(0deg);
+        -webkit-transform: rotateZ(0deg);
+    }
+    10% {
+        transform: rotateZ(-30deg);
+        -ms-transform: rotateZ(-30deg);
+        -webkit-transform: rotateZ(-30deg);
+    }
+    20% {
+        transform: rotateZ(15deg);
+        -ms-transform: rotateZ(15deg);
+        -webkit-transform: rotateZ(15deg);
+    }
+    30% {
+        transform: rotateZ(-10deg);
+        -ms-transform: rotateZ(-10deg);
+        -webkit-transform: rotateZ(-10deg);
+    }
+    40% {
+        transform: rotateZ(7.5deg);
+        -ms-transform: rotateZ(7.5deg);
+        -webkit-transform: rotateZ(7.5deg);
+    }
+    50% {
+        transform: rotateZ(-6deg);
+        -ms-transform: rotateZ(-6deg);
+        -webkit-transform: rotateZ(-6deg);
+    }
+    60% {
+        transform: rotateZ(5deg);
+        -ms-transform: rotateZ(5deg);
+        -webkit-transform: rotateZ(5deg);
+    }
+    70% {
+        transform: rotateZ(-4.28571deg);
+        -ms-transform: rotateZ(-4.28571deg);
+        -webkit-transform: rotateZ(-4.28571deg);
+    }
+    80% {
+        transform: rotateZ(3.75deg);
+        -ms-transform: rotateZ(3.75deg);
+        -webkit-transform: rotateZ(3.75deg);
+    }
+    90% {
+        transform: rotateZ(-3.33333deg);
+        -ms-transform: rotateZ(-3.33333deg);
+        -webkit-transform: rotateZ(-3.33333deg);
+    }
+    100% {
+        transform: rotateZ(0deg);
+        -ms-transform: rotateZ(0deg);
+        -webkit-transform: rotateZ(0deg);
+    }
+}
+@-webkit-keyframes shake {
+    0% {
+        transform: rotateZ(0deg);
+        -ms-transform: rotateZ(0deg);
+        -webkit-transform: rotateZ(0deg);
+    }
+    10% {
+        transform: rotateZ(-30deg);
+        -ms-transform: rotateZ(-30deg);
+        -webkit-transform: rotateZ(-30deg);
+    }
+    20% {
+        transform: rotateZ(15deg);
+        -ms-transform: rotateZ(15deg);
+        -webkit-transform: rotateZ(15deg);
+    }
+    30% {
+        transform: rotateZ(-10deg);
+        -ms-transform: rotateZ(-10deg);
+        -webkit-transform: rotateZ(-10deg);
+    }
+    40% {
+        transform: rotateZ(7.5deg);
+        -ms-transform: rotateZ(7.5deg);
+        -webkit-transform: rotateZ(7.5deg);
+    }
+    50% {
+        transform: rotateZ(-6deg);
+        -ms-transform: rotateZ(-6deg);
+        -webkit-transform: rotateZ(-6deg);
+    }
+    60% {
+        transform: rotateZ(5deg);
+        -ms-transform: rotateZ(5deg);
+        -webkit-transform: rotateZ(5deg);
+    }
+    70% {
+        transform: rotateZ(-4.28571deg);
+        -ms-transform: rotateZ(-4.28571deg);
+        -webkit-transform: rotateZ(-4.28571deg);
+    }
+    80% {
+        transform: rotateZ(3.75deg);
+        -ms-transform: rotateZ(3.75deg);
+        -webkit-transform: rotateZ(3.75deg);
+    }
+    90% {
+        transform: rotateZ(-3.33333deg);
+        -ms-transform: rotateZ(-3.33333deg);
+        -webkit-transform: rotateZ(-3.33333deg);
+    }
+    100% {
+        transform: rotateZ(0deg);
+        -ms-transform: rotateZ(0deg);
+        -webkit-transform: rotateZ(0deg);
+    }
+}
+/* конец кнопки звонка */
 @media screen and (max-width: 1200px) {
     .article--body table {
         width: auto !important;
