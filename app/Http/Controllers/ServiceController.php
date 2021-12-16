@@ -41,10 +41,10 @@ class ServiceController extends Controller
             }
         }
 
-        $service = DB::table('categories')
-            ->where('category_url', '=', $category_url)
-            ->leftJoin('services', 'categories.id', '=', 'services.category_id')
+        $service = DB::table('services')
             ->where('service_url', '=', $service_url)
+            ->leftJoin('categories', 'categories.id', '=', 'services.category_id')
+            ->where('category_url', '=', $category_url)
             ->first();
 
         return view('public.pages.service', ['service' => $service, 'categories' => $data, 'bottom' => $bottom]);
