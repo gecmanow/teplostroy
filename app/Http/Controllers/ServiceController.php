@@ -21,7 +21,7 @@ class ServiceController extends Controller
                 foreach ($cValue->services as $key => $value) {
                     $data[$cKey]['services'][$key] = [
                         'service_name' => $value->service_name,
-                        'service_url' =>$value->service_url
+                        'service_url' => $value->service_url
                     ];
                 }
             }
@@ -35,16 +35,16 @@ class ServiceController extends Controller
                 foreach ($sValue->services as $key => $value) {
                     $bottom[$key] = [
                         'service_name' => $value->service_name,
-                        'service_url' =>$value->service_url
+                        'service_url' => $value->service_url
                     ];
                 }
             }
         }
 
-        $service = DB::table('services')
-            ->where('service_url', '=', $service_url)
-            ->leftJoin('categories', 'categories.id', '=', 'services.category_id')
+        $service = DB::table('categories')
             ->where('category_url', '=', $category_url)
+            ->leftJoin('services', 'categories.id', '=', 'services.category_id')
+            ->where('service_url', '=', $service_url)
             ->first();
 
         return view('public.pages.service', ['service' => $service, 'categories' => $data, 'bottom' => $bottom]);
