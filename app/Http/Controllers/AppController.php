@@ -32,7 +32,7 @@ class AppController extends Controller
             ."\nОтвет: ". $poll;
         $userAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
 
-        $chatId = '-642242554';
+        $chatId = env('TELEGRAM_CHAT_ID');
         $url = "https://api.telegram.org/bot" . $token . "/sendMessage";
         $params = array(
             'chat_id' => $chatId,
@@ -101,7 +101,7 @@ class AppController extends Controller
             ."\nКомментарий: " . $comment;
         $userAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
 
-        $chatId = '-642242554';
+        $chatId = env('TELEGRAM_CHAT_ID');
         $url = "https://api.telegram.org/bot" . $token . "/sendMessage";
         $params = array(
             'chat_id' => $chatId,
