@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 
 class AppController extends Controller
@@ -20,16 +20,27 @@ class AppController extends Controller
         $poll = $request->input('poll');
 
         $name = 'Пользователь';
-        $data = array(
-            'name' => $name,
-            'poll' => $poll,
-            );
+
+        if(session('checked_utm')) {
+            $utm_marks = json_decode(session('utm_marks'), 1);
+            $utm_source = Arr::get($utm_marks, 'utm_source', "site.ru");
+            $utm_medium = Arr::get($utm_marks, 'utm_medium', "");
+            $utm_campaign = Arr::get($utm_marks, 'utm_campaign', "");
+            $utm_content = Arr::get($utm_marks, 'utm_content', "");
+            $utm_term = Arr::get($utm_marks, 'utm_term', "");
+        }
+
         $token = env('TELEGRAM_TOKEN');
 
         $subject = "Результат опроса с сайта ck-tct.ru";
-        $msg = "Тип заявки: ". $subject
-            ."\nИмя: ". $name
-            ."\nОтвет: ". $poll;
+        $msg = "Тип заявки: " . $subject
+            . "\nИмя: " . $name
+            . "\nОтвет: " . $poll
+            . "\nИсточник: " . $utm_source
+            . "\nТип трафика: " . $utm_medium
+            . "\nКампания: " . $utm_campaign
+            . "\nМесто размещения: " . $utm_content
+            . "\nИнтерес: " . $utm_term;
         $userAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
 
         $chatId = env('TELEGRAM_CHAT_ID');
@@ -87,6 +98,14 @@ class AppController extends Controller
         $name = $request->input('modalName');
         $phone = $request->input('modalPhone');
         $comment = $request->input('modalComment');
+        if(session('checked_utm')) {
+            $utm_marks = json_decode(session('utm_marks'), 1);
+            $utm_source = Arr::get($utm_marks, 'utm_source', "site.ru");
+            $utm_medium = Arr::get($utm_marks, 'utm_medium', "");
+            $utm_campaign = Arr::get($utm_marks, 'utm_campaign', "");
+            $utm_content = Arr::get($utm_marks, 'utm_content', "");
+            $utm_term = Arr::get($utm_marks, 'utm_term', "");
+        }
         $token = env('TELEGRAM_TOKEN');
         $empty = 'Не заполнено';
 
@@ -96,9 +115,14 @@ class AppController extends Controller
 
         $subject = "Заявка с сайта ck-tct.ru (модальное окно)";
         $msg = "Тип заявки: ". $subject
-            ."\nИмя: ". $name
-            ."\nТелефон: ". $phone
-            ."\nКомментарий: " . $comment;
+            . "\nИмя: " . $name
+            . "\nТелефон: " . $phone
+            . "\nКомментарий: " . $comment
+            . "\nИсточник: " . $utm_source
+            . "\nТип трафика: " . $utm_medium
+            . "\nКампания: " . $utm_campaign
+            . "\nМесто размещения: " . $utm_content
+            . "\nИнтерес: " . $utm_term;
         $userAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
 
         $chatId = env('TELEGRAM_CHAT_ID');

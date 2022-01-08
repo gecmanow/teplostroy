@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 
@@ -59,6 +59,14 @@ class PageController extends Controller
         $email = $request->input('orderOneStepEmail');
         $phone = $request->input('orderOneStepPhone');
         $comment = $request->input('orderOneStepComment');
+        if(session('checked_utm')) {
+            $utm_marks = json_decode(session('utm_marks'), 1);
+            $utm_source = Arr::get($utm_marks, 'utm_source', "site.ru");
+            $utm_medium = Arr::get($utm_marks, 'utm_medium', "");
+            $utm_campaign = Arr::get($utm_marks, 'utm_campaign', "");
+            $utm_content = Arr::get($utm_marks, 'utm_content', "");
+            $utm_term = Arr::get($utm_marks, 'utm_term', "");
+        }
         $token = env('TELEGRAM_TOKEN');
         $empty = 'Не заполнено';
 
@@ -67,17 +75,22 @@ class PageController extends Controller
         }
 
         $subject = "Заявка с сайта ck-tct.ru (Страница onlain-zakaz, одношаговая форма)";
-        $msg = "Тип заявки: ". $subject
-            ."\nИмя: ". $name
-            ."\nТелефон: ". $phone
-            ."\nEmail: " . $email
-            ."\nКомментарий: " . $comment;
+        $msg = "Тип заявки: " . $subject
+            . "\nИмя: " . $name
+            . "\nТелефон: " . $phone
+            . "\nEmail: " . $email
+            . "\nКомментарий: " . $comment
+            . "\nИсточник: " . $utm_source
+            . "\nТип трафика: " . $utm_medium
+            . "\nКампания: " . $utm_campaign
+            . "\nМесто размещения: " . $utm_content
+            . "\nИнтерес: " . $utm_term;
         $userAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
 
-        $chatId = '-642242554';
+        $chat_id = env('TELEGRAM_CHAT_ID');
         $url = "https://api.telegram.org/bot" . $token . "/sendMessage";
         $params = array(
-            'chat_id' => $chatId,
+            'chat_id' => $chat_id,
             'text' => $msg,
             'disable_web_page_preview' => null,
             'reply_to_message_id' => null,
@@ -129,18 +142,31 @@ class PageController extends Controller
 
         $name = $request->input('orderInstallInsulationName');
         $phone = $request->input('orderInstallInsulationPhone');
+        if(session('checked_utm')) {
+            $utm_marks = json_decode(session('utm_marks'), 1);
+            $utm_source = Arr::get($utm_marks, 'utm_source', "site.ru");
+            $utm_medium = Arr::get($utm_marks, 'utm_medium', "");
+            $utm_campaign = Arr::get($utm_marks, 'utm_campaign', "");
+            $utm_content = Arr::get($utm_marks, 'utm_content', "");
+            $utm_term = Arr::get($utm_marks, 'utm_term', "");
+        }
         $token = env('TELEGRAM_TOKEN');
 
         $subject = "Заявка с сайта ck-tct.ru (монтаж теплоизоляции)";
-        $msg = "Тип заявки: ". $subject
-            ."\nИмя: ". $name
-            ."\nТелефон: ". $phone;
+        $msg = "Тип заявки: " . $subject
+            . "\nИмя: " . $name
+            . "\nТелефон: " . $phone
+            . "\nИсточник: " . $utm_source
+            . "\nТип трафика: " . $utm_medium
+            . "\nКампания: " . $utm_campaign
+            . "\nМесто размещения: " . $utm_content
+            . "\nИнтерес: " . $utm_term;
         $userAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
 
-        $chatId = '-642242554';
+        $chat_id = env('TELEGRAM_CHAT_ID');
         $url = "https://api.telegram.org/bot" . $token . "/sendMessage";
         $params = array(
-            'chat_id' => $chatId,
+            'chat_id' => $chat_id,
             'text' => $msg,
             'disable_web_page_preview' => null,
             'reply_to_message_id' => null,
@@ -192,18 +218,31 @@ class PageController extends Controller
 
         $name = $request->input('orderBoilerRepairName');
         $phone = $request->input('orderBoilerRepairPhone');
+        if(session('checked_utm')) {
+            $utm_marks = json_decode(session('utm_marks'), 1);
+            $utm_source = Arr::get($utm_marks, 'utm_source', "site.ru");
+            $utm_medium = Arr::get($utm_marks, 'utm_medium', "");
+            $utm_campaign = Arr::get($utm_marks, 'utm_campaign', "");
+            $utm_content = Arr::get($utm_marks, 'utm_content', "");
+            $utm_term = Arr::get($utm_marks, 'utm_term', "");
+        }
         $token = env('TELEGRAM_TOKEN');
 
         $subject = "Заявка с сайта ck-tct.ru (ремонт котельных)";
         $msg = "Тип заявки: ". $subject
-            ."\nИмя: ". $name
-            ."\nТелефон: ". $phone;
+            . "\nИмя: " . $name
+            . "\nТелефон: " . $phone
+            . "\nИсточник: " . $utm_source
+            . "\nТип трафика: " . $utm_medium
+            . "\nКампания: " . $utm_campaign
+            . "\nМесто размещения: " . $utm_content
+            . "\nИнтерес: " . $utm_term;
         $userAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
 
-        $chatId = '-642242554';
+        $chat_id = env('TELEGRAM_CHAT_ID');
         $url = "https://api.telegram.org/bot" . $token . "/sendMessage";
         $params = array(
-            'chat_id' => $chatId,
+            'chat_id' => $chat_id,
             'text' => $msg,
             'disable_web_page_preview' => null,
             'reply_to_message_id' => null,
@@ -255,18 +294,31 @@ class PageController extends Controller
 
         $name = $request->input('orderShellPpuName');
         $phone = $request->input('orderShellPpuPhone');
+        if(session('checked_utm')) {
+            $utm_marks = json_decode(session('utm_marks'), 1);
+            $utm_source = Arr::get($utm_marks, 'utm_source', "site.ru");
+            $utm_medium = Arr::get($utm_marks, 'utm_medium', "");
+            $utm_campaign = Arr::get($utm_marks, 'utm_campaign', "");
+            $utm_content = Arr::get($utm_marks, 'utm_content', "");
+            $utm_term = Arr::get($utm_marks, 'utm_term', "");
+        }
         $token = env('TELEGRAM_TOKEN');
 
         $subject = "Заявка с сайта ck-tct.ru (скорлупа ППУ)";
-        $msg = "Тип заявки: ". $subject
-            ."\nИмя: ". $name
-            ."\nТелефон: ". $phone;
+        $msg = "Тип заявки: " . $subject
+            . "\nИмя: " . $name
+            . "\nТелефон: " . $phone
+            . "\nИсточник: " . $utm_source
+            . "\nТип трафика: " . $utm_medium
+            . "\nКампания: " . $utm_campaign
+            . "\nМесто размещения: " . $utm_content
+            . "\nИнтерес: " . $utm_term;
         $userAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
 
-        $chatId = '-642242554';
+        $chat_id = env('TELEGRAM_CHAT_ID');
         $url = "https://api.telegram.org/bot" . $token . "/sendMessage";
         $params = array(
-            'chat_id' => $chatId,
+            'chat_id' => $chat_id,
             'text' => $msg,
             'disable_web_page_preview' => null,
             'reply_to_message_id' => null,

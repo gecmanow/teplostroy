@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -80,6 +81,14 @@ class MultiStepFormController extends Controller
         $email = $request->input('step2email');
         $phone = $request->input('step2phone');
         $comment = $request->input('step2comment');
+        if(session('checked_utm')) {
+            $utm_marks = json_decode(session('utm_marks'), 1);
+            $utm_source = Arr::get($utm_marks, 'utm_source', "site.ru");
+            $utm_medium = Arr::get($utm_marks, 'utm_medium', "");
+            $utm_campaign = Arr::get($utm_marks, 'utm_campaign', "");
+            $utm_content = Arr::get($utm_marks, 'utm_content', "");
+            $utm_term = Arr::get($utm_marks, 'utm_term', "");
+        }
         $token = env('TELEGRAM_TOKEN');
         $empty = 'Не заполнено';
 
@@ -89,10 +98,15 @@ class MultiStepFormController extends Controller
 
         $subject = "Заявка с сайта ck-tct.ru (многошаговая форма, скорлупа)";
         $msg = "Тип заявки: ". $subject
-            ."\nИмя: ". $name
-            ."\nТелефон: ". $phone
-            ."\nEmail: " . $email
-            ."\nКомментарий: " . $comment;
+            . "\nИмя: " . $name
+            . "\nТелефон: " . $phone
+            . "\nEmail: " . $email
+            . "\nКомментарий: " . $comment
+            . "\nИсточник: " . $utm_source
+            . "\nТип трафика: " . $utm_medium
+            . "\nКампания: " . $utm_campaign
+            . "\nМесто размещения: " . $utm_content
+            . "\nИнтерес: " . $utm_term;
         $userAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
 
         $chatId = env('TELEGRAM_CHAT_ID');
@@ -438,6 +452,14 @@ class MultiStepFormController extends Controller
         $phone                = $request->input('phone');
         $email                = $request->input('email');
         $communication_method = $request->input('communication_method');
+        if(session('checked_utm')) {
+            $utm_marks = json_decode(session('utm_marks'), 1);
+            $utm_source = Arr::get($utm_marks, 'utm_source', "site.ru");
+            $utm_medium = Arr::get($utm_marks, 'utm_medium', "");
+            $utm_campaign = Arr::get($utm_marks, 'utm_campaign', "");
+            $utm_content = Arr::get($utm_marks, 'utm_content', "");
+            $utm_term = Arr::get($utm_marks, 'utm_term', "");
+        }
         $token = env('TELEGRAM_TOKEN');
         $empty = 'Не заполнено';
 
@@ -505,76 +527,81 @@ class MultiStepFormController extends Controller
 
         $subject = "Заявка с сайта ck-tct.ru (многошаговая форма)";
         $msg = "Тип заявки: ". $subject
-            ."\nИмя: ". $name
-            ."\nТелефон: ". $phone
-            ."\nEmail: " . $email
-            ."\nРеквизиты: " . $requisites
-            ."\nТип котельной установки: " . $boiler_type
-            ."\nСостав необходимых работ: " . $services_1
-            ."\nСостав необходимых работ: " . $services_2
-            ."\nСостав необходимых работ: " . $services_3
-            ."\nСостав необходимых работ: " . $services_4
-            ."\nСостав необходимых работ: " . $services_5
-            ."\nСостав необходимых работ: " . $services_6
-            ."\nСостав необходимых работ: " . $services_7
-            ."\nСостав необходимых работ: " . $services_8
-            ."\nТип системы теплоснабжения: " . $type_heat_supply_system_1
-            ."\nТип системы теплоснабжения: " . $type_heat_supply_system_2
-            ."\nТип системы теплоснабжения: " . $type_heat_supply_system_3
-            ."\nТип системы теплоснабжения: " . $type_heat_supply_system_4
-            ."\nОбщая теплопроизводительность, Гкал/час или кВт: " . $heating_capacity
-            ."\nКоличество котлов и единичная мощность котла, Гкал/час или кВт: " . $quality_and_power
-            ."\nНа ГВС, Гкал/час: " . $heat_load_distribution_1
-            ."\nНа вентиляцию, Гкал/час: " . $heat_load_distribution_2
-            ."\nНа вентиляцию, Гкал/час: " . $heat_load_distribution_3
-            ."\nТемпературный режим системы отопления, С (вход-выход): " . $heat_load_distribution_4
-            ."\nРасчетная температура воды на ГВС, С: " . $water_temp
-            ."\nРасход горячей воды на ГВС, м3/час: " . $water_consumption
-            ."\nДавление воды в тепловой сети, Мпа: " . $water_pressure_1
-            ."\nДавление воды в водопроводе, Мпа: " . $water_pressure_2
-            ."\nСодержание взвешенных веществ, мг/кг: " . $suspended_substances
-            ."\nПрозрачность по шифту (или кольцу), см: " . $transparency
-            ."\nЩелочность, мг/кг: " . $alkalinity
-            ."\nОбщая жесткость, мг-экв/кг: " . $rigidity
-            ."\nСодержание железа в пересчете на Fe, мг/кг: " . $iron
-            ."\nОсновное топливо: " . $main_fuel
-            ."\nРезервное топливо: " . $reserve_fuel
-            ."\nМарка топлива: " . $fuel_mark
-            ."\nКалорийность топлива, ккал/кг: " . $calorific
-            ."\nРазмер кусков топлива: " . $size
-            ."\nКоличество модульных блоков, шт: " . $modular_blocks_quality
-            ."\nНаличие дымовой трубы (размеры), мм: " . $chimney
-            ."\nПодача топлива в котел: " . $boiler_fuel_supply
-            ."\nПодача топлива в модульную котельную: " . $boiler_room_fuel_supply
-            ."\nУдаление золы из котельной: " . $boiler_room_removal_ash
-            ."\nКатегория котельной (наличие резервного котла): " . $boiler_room_category
-            ."\nНасосное оборудование: " . $boiler_room_equipment_1
-            ."\nЗапорная арматура: " . $boiler_room_equipment_2
-            ."\nДополнительно: " . $boiler_room_equipment
-            ."\nНаличие ограничений: " . $limitations
-            ."\nДополнительные условия по проектированию: " . $additional_conditions
-            ."\nТребуемый срок поставки: " . $delivery_time
-            ."\nАдрес поставки: " . $delivery_address
-            ."\nАдрес монтажа: " . $installation_address
-            ."\nНаименование отапливаемого объекта: " . $object_name
-            ."\nМестонахождение: " . $location
-            ."\nДиаметр: " . $diameter
-            ."\nПротяженность: " . $length
-            ."\nТемпература носителя: " . $temp
-            ."\nОбъект: " . $object
-            ."\nМарка котла: " . $boiler
-            ."\nТип топлива: " . $fuel
-            ."\nМощность: " . $power
-            ."\nОписание работ: " . $description
-            ."\nНазвание компании: " . $company_name
-            ."\nДолжность: " . $post
-            ."\nМетод связи: " . $communication_method;
+            . "\nИмя: " . $name
+            . "\nТелефон: " . $phone
+            . "\nEmail: " . $email
+            . "\nРеквизиты: " . $requisites
+            . "\nТип котельной установки: " . $boiler_type
+            . "\nСостав необходимых работ: " . $services_1
+            . "\nСостав необходимых работ: " . $services_2
+            . "\nСостав необходимых работ: " . $services_3
+            . "\nСостав необходимых работ: " . $services_4
+            . "\nСостав необходимых работ: " . $services_5
+            . "\nСостав необходимых работ: " . $services_6
+            . "\nСостав необходимых работ: " . $services_7
+            . "\nСостав необходимых работ: " . $services_8
+            . "\nТип системы теплоснабжения: " . $type_heat_supply_system_1
+            . "\nТип системы теплоснабжения: " . $type_heat_supply_system_2
+            . "\nТип системы теплоснабжения: " . $type_heat_supply_system_3
+            . "\nТип системы теплоснабжения: " . $type_heat_supply_system_4
+            . "\nОбщая теплопроизводительность, Гкал/час или кВт: " . $heating_capacity
+            . "\nКоличество котлов и единичная мощность котла, Гкал/час или кВт: " . $quality_and_power
+            . "\nНа ГВС, Гкал/час: " . $heat_load_distribution_1
+            . "\nНа вентиляцию, Гкал/час: " . $heat_load_distribution_2
+            . "\nНа вентиляцию, Гкал/час: " . $heat_load_distribution_3
+            . "\nТемпературный режим системы отопления, С (вход-выход): " . $heat_load_distribution_4
+            . "\nРасчетная температура воды на ГВС, С: " . $water_temp
+            . "\nРасход горячей воды на ГВС, м3/час: " . $water_consumption
+            . "\nДавление воды в тепловой сети, Мпа: " . $water_pressure_1
+            . "\nДавление воды в водопроводе, Мпа: " . $water_pressure_2
+            . "\nСодержание взвешенных веществ, мг/кг: " . $suspended_substances
+            . "\nПрозрачность по шифту (или кольцу), см: " . $transparency
+            . "\nЩелочность, мг/кг: " . $alkalinity
+            . "\nОбщая жесткость, мг-экв/кг: " . $rigidity
+            . "\nСодержание железа в пересчете на Fe, мг/кг: " . $iron
+            . "\nОсновное топливо: " . $main_fuel
+            . "\nРезервное топливо: " . $reserve_fuel
+            . "\nМарка топлива: " . $fuel_mark
+            . "\nКалорийность топлива, ккал/кг: " . $calorific
+            . "\nРазмер кусков топлива: " . $size
+            . "\nКоличество модульных блоков, шт: " . $modular_blocks_quality
+            . "\nНаличие дымовой трубы (размеры), мм: " . $chimney
+            . "\nПодача топлива в котел: " . $boiler_fuel_supply
+            . "\nПодача топлива в модульную котельную: " . $boiler_room_fuel_supply
+            . "\nУдаление золы из котельной: " . $boiler_room_removal_ash
+            . "\nКатегория котельной (наличие резервного котла): " . $boiler_room_category
+            . "\nНасосное оборудование: " . $boiler_room_equipment_1
+            . "\nЗапорная арматура: " . $boiler_room_equipment_2
+            . "\nДополнительно: " . $boiler_room_equipment
+            . "\nНаличие ограничений: " . $limitations
+            . "\nДополнительные условия по проектированию: " . $additional_conditions
+            . "\nТребуемый срок поставки: " . $delivery_time
+            . "\nАдрес поставки: " . $delivery_address
+            . "\nАдрес монтажа: " . $installation_address
+            . "\nНаименование отапливаемого объекта: " . $object_name
+            . "\nМестонахождение: " . $location
+            . "\nДиаметр: " . $diameter
+            . "\nПротяженность: " . $length
+            . "\nТемпература носителя: " . $temp
+            . "\nОбъект: " . $object
+            . "\nМарка котла: " . $boiler
+            . "\nТип топлива: " . $fuel
+            . "\nМощность: " . $power
+            . "\nОписание работ: " . $description
+            . "\nНазвание компании: " . $company_name
+            . "\nДолжность: " . $post
+            . "\nМетод связи: " . $communication_method
+            . "\nИсточник: " . $utm_source
+            . "\nТип трафика: " . $utm_medium
+            . "\nКампания: " . $utm_campaign
+            . "\nМесто размещения: " . $utm_content
+            . "\nИнтерес: " . $utm_term;
         $userAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
 
-        $chatId = env('TELEGRAM_CHAT_ID');
+        $chat_id = env('TELEGRAM_CHAT_ID');
         $url = "https://api.telegram.org/bot" . $token . "/sendMessage";
         $params = array(
-            'chat_id' => $chatId,
+            'chat_id' => $chat_id,
             'text' => $msg,
             'disable_web_page_preview' => null,
             'reply_to_message_id' => null,
