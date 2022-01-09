@@ -23,8 +23,7 @@ class PageController extends Controller
 
     public function order()
     {
-        $step = 1;
-        session(['step' => $step]);
+        $step = session('step');
 
         return view('public.pages.order', ['step' => $step]);
     }
@@ -59,14 +58,11 @@ class PageController extends Controller
         $email = $request->input('orderOneStepEmail');
         $phone = $request->input('orderOneStepPhone');
         $comment = $request->input('orderOneStepComment');
-        if(session('checked_utm')) {
-            $utm_marks = json_decode(session('utm_marks'), 1);
-            $utm_source = Arr::get($utm_marks, 'utm_source', "site.ru");
-            $utm_medium = Arr::get($utm_marks, 'utm_medium', "");
-            $utm_campaign = Arr::get($utm_marks, 'utm_campaign', "");
-            $utm_content = Arr::get($utm_marks, 'utm_content', "");
-            $utm_term = Arr::get($utm_marks, 'utm_term', "");
-        }
+        $utm_source = session('utm_source', "");
+        $utm_medium = session('utm_medium', "");
+        $utm_campaign = session('utm_campaign', "");
+        $utm_content = session('utm_content', "");
+        $utm_term = session('utm_term', "");
         $token = env('TELEGRAM_TOKEN');
         $empty = 'Не заполнено';
 
@@ -142,14 +138,11 @@ class PageController extends Controller
 
         $name = $request->input('orderInstallInsulationName');
         $phone = $request->input('orderInstallInsulationPhone');
-        if(session('checked_utm')) {
-            $utm_marks = json_decode(session('utm_marks'), 1);
-            $utm_source = Arr::get($utm_marks, 'utm_source', "site.ru");
-            $utm_medium = Arr::get($utm_marks, 'utm_medium', "");
-            $utm_campaign = Arr::get($utm_marks, 'utm_campaign', "");
-            $utm_content = Arr::get($utm_marks, 'utm_content', "");
-            $utm_term = Arr::get($utm_marks, 'utm_term', "");
-        }
+        $utm_source = session('utm_source', "");
+        $utm_medium = session('utm_medium', "");
+        $utm_campaign = session('utm_campaign', "");
+        $utm_content = session('utm_content', "");
+        $utm_term = session('utm_term', "");
         $token = env('TELEGRAM_TOKEN');
 
         $subject = "Заявка с сайта ck-tct.ru (монтаж теплоизоляции)";
@@ -218,14 +211,11 @@ class PageController extends Controller
 
         $name = $request->input('orderBoilerRepairName');
         $phone = $request->input('orderBoilerRepairPhone');
-        if(session('checked_utm')) {
-            $utm_marks = json_decode(session('utm_marks'), 1);
-            $utm_source = Arr::get($utm_marks, 'utm_source', "site.ru");
-            $utm_medium = Arr::get($utm_marks, 'utm_medium', "");
-            $utm_campaign = Arr::get($utm_marks, 'utm_campaign', "");
-            $utm_content = Arr::get($utm_marks, 'utm_content', "");
-            $utm_term = Arr::get($utm_marks, 'utm_term', "");
-        }
+        $utm_source = session('utm_source', "");
+        $utm_medium = session('utm_medium', "");
+        $utm_campaign = session('utm_campaign', "");
+        $utm_content = session('utm_content', "");
+        $utm_term = session('utm_term', "");
         $token = env('TELEGRAM_TOKEN');
 
         $subject = "Заявка с сайта ck-tct.ru (ремонт котельных)";
@@ -294,14 +284,11 @@ class PageController extends Controller
 
         $name = $request->input('orderShellPpuName');
         $phone = $request->input('orderShellPpuPhone');
-        if(session('checked_utm')) {
-            $utm_marks = json_decode(session('utm_marks'), 1);
-            $utm_source = Arr::get($utm_marks, 'utm_source', "site.ru");
-            $utm_medium = Arr::get($utm_marks, 'utm_medium', "");
-            $utm_campaign = Arr::get($utm_marks, 'utm_campaign', "");
-            $utm_content = Arr::get($utm_marks, 'utm_content', "");
-            $utm_term = Arr::get($utm_marks, 'utm_term', "");
-        }
+        $utm_source = session('utm_source', "");
+        $utm_medium = session('utm_medium', "");
+        $utm_campaign = session('utm_campaign', "");
+        $utm_content = session('utm_content', "");
+        $utm_term = session('utm_term', "");
         $token = env('TELEGRAM_TOKEN');
 
         $subject = "Заявка с сайта ck-tct.ru (скорлупа ППУ)";

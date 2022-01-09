@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 
 class AppController extends Controller
@@ -12,6 +11,7 @@ class AppController extends Controller
     public function index()
     {
         $articles = Article::all()->take(5);
+
         return view('public.pages.home', ['articles' => $articles]);
     }
 
@@ -21,14 +21,11 @@ class AppController extends Controller
 
         $name = 'Пользователь';
 
-        if(session('checked_utm')) {
-            $utm_marks = json_decode(session('utm_marks'), 1);
-            $utm_source = Arr::get($utm_marks, 'utm_source', "site.ru");
-            $utm_medium = Arr::get($utm_marks, 'utm_medium', "");
-            $utm_campaign = Arr::get($utm_marks, 'utm_campaign', "");
-            $utm_content = Arr::get($utm_marks, 'utm_content', "");
-            $utm_term = Arr::get($utm_marks, 'utm_term', "");
-        }
+        $utm_source = session('utm_source', "");
+        $utm_medium = session('utm_medium', "");
+        $utm_campaign = session('utm_campaign', "");
+        $utm_content = session('utm_content', "");
+        $utm_term = session('utm_term', "");
 
         $token = env('TELEGRAM_TOKEN');
 
@@ -98,14 +95,12 @@ class AppController extends Controller
         $name = $request->input('modalName');
         $phone = $request->input('modalPhone');
         $comment = $request->input('modalComment');
-        if(session('checked_utm')) {
-            $utm_marks = json_decode(session('utm_marks'), 1);
-            $utm_source = Arr::get($utm_marks, 'utm_source', "site.ru");
-            $utm_medium = Arr::get($utm_marks, 'utm_medium', "");
-            $utm_campaign = Arr::get($utm_marks, 'utm_campaign', "");
-            $utm_content = Arr::get($utm_marks, 'utm_content', "");
-            $utm_term = Arr::get($utm_marks, 'utm_term', "");
-        }
+        $utm_source = session('utm_source', "");
+        $utm_medium = session('utm_medium', "");
+        $utm_campaign = session('utm_campaign', "");
+        $utm_content = session('utm_content', "");
+        $utm_term = session('utm_term', "");
+
         $token = env('TELEGRAM_TOKEN');
         $empty = 'Не заполнено';
 

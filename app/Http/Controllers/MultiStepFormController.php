@@ -81,14 +81,11 @@ class MultiStepFormController extends Controller
         $email = $request->input('step2email');
         $phone = $request->input('step2phone');
         $comment = $request->input('step2comment');
-        if(session('checked_utm')) {
-            $utm_marks = json_decode(session('utm_marks'), 1);
-            $utm_source = Arr::get($utm_marks, 'utm_source', "site.ru");
-            $utm_medium = Arr::get($utm_marks, 'utm_medium', "");
-            $utm_campaign = Arr::get($utm_marks, 'utm_campaign', "");
-            $utm_content = Arr::get($utm_marks, 'utm_content', "");
-            $utm_term = Arr::get($utm_marks, 'utm_term', "");
-        }
+        $utm_source = session('utm_source', "");
+        $utm_medium = session('utm_medium', "");
+        $utm_campaign = session('utm_campaign', "");
+        $utm_content = session('utm_content', "");
+        $utm_term = session('utm_term', "");
         $token = env('TELEGRAM_TOKEN');
         $empty = 'Не заполнено';
 
@@ -452,14 +449,11 @@ class MultiStepFormController extends Controller
         $phone                = $request->input('phone');
         $email                = $request->input('email');
         $communication_method = $request->input('communication_method');
-        if(session('checked_utm')) {
-            $utm_marks = json_decode(session('utm_marks'), 1);
-            $utm_source = Arr::get($utm_marks, 'utm_source', "site.ru");
-            $utm_medium = Arr::get($utm_marks, 'utm_medium', "");
-            $utm_campaign = Arr::get($utm_marks, 'utm_campaign', "");
-            $utm_content = Arr::get($utm_marks, 'utm_content', "");
-            $utm_term = Arr::get($utm_marks, 'utm_term', "");
-        }
+        $utm_source = session('utm_source', "");
+        $utm_medium = session('utm_medium', "");
+        $utm_campaign = session('utm_campaign', "");
+        $utm_content = session('utm_content', "");
+        $utm_term = session('utm_term', "");
         $token = env('TELEGRAM_TOKEN');
         $empty = 'Не заполнено';
 
