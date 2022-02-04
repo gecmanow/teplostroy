@@ -7,6 +7,15 @@
             </div>
             <form method="post" onsubmit="reachGoal('re_callback'); return true;" action="{{ route('modal') }}">
                 {{ csrf_field() }}
+                @if ($errors->orderModalForm->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->orderModalForm->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="modalName">Ваше имя:</label>
@@ -20,6 +29,8 @@
                         <label for="modalComment">Дополнительная информация:</label>
                         <input type="text" class="form-control" name="modalComment" id="modalComment" value="{{ old('modalComment') }}">
                     </div>
+                    {!! app('captcha')->display() !!}
+                    {!! $errors->orderModalForm->first('g-recaptcha-response', '<p class="alert alert-danger">:message</p>') !!}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
